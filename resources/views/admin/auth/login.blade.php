@@ -8,17 +8,17 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('/assets/admin/images/favicon.ico') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.ico') }}">
 
 		<!-- App css -->
-		<link href="{{ asset('/assets/admin/css/bootstrap-material.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet') }}" />
-		<link href="{{ asset('/assets/admin/css/app-material.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet') }}" />
+		<link href="{{ asset('assets/admin/css/bootstrap-material.min.css') }}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
+		<link href="{{ asset('assets/admin/css/app-material.min.css') }}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
-		<link href="{{ asset('/assets/admin/css/bootstrap-material-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet') }}" />
-		<link href="{{ asset('/assets/admin/css/app-material-dark.min.css" rel="stylesheet" type="text/css" id="app-dark-stylesheet') }}" />
+		<link href="{{ asset('assets/admin/css/bootstrap-material-dark.min.css') }}" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" />
+		<link href="{{ asset('assets/admin/css/app-material-dark.min.css') }}" rel="stylesheet" type="text/css" id="app-dark-stylesheet" />
 
 		<!-- icons -->
-		<link href="{{ asset('/assets/admin/css/icons.min.css" rel="stylesheet" type="text/css') }}" />
+		<link href="{{ asset('assets/admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -36,13 +36,13 @@
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="../assets/images/logo-dark.png" alt="" height="22">
+                                                <img src="{{ asset('assets/admin/images/logo-dark.png') }}" alt="LOGO" height="22">
                                             </span>
                                         </a>
                     
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="../assets/images/logo-light.png" alt="" height="22">
+                                                <img src="{{ asset('assets/admin/images/logo-light.png') }}" alt="LOGO" height="22">
                                             </span>
                                         </a>
                                     </div>
@@ -68,49 +68,19 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="checkbox-signin" checked>
-                                            <label class="form-check-label" for="checkbox-signin">
-                                                Remember me
-                                            </label>
-                                        </div>
+                                        
                                     </div>
-
+                                    
                                     <div class="d-grid mb-0 text-center">
                                         <button class="btn btn-primary" type="submit"> Log In </button>
                                     </div>
+                                    <a href="auth-recoverpw.html" class="float-end mt-2 ms-1">Forgot your password?</a>
 
                                 </form>
-
-                                <div class="text-center">
-                                    <h5 class="mt-3 text-muted">Sign in with</h5>
-                                    <ul class="social-list list-inline mt-3 mb-0">
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-purple text-purple"><i class="mdi mdi-facebook"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
 
                             </div> <!-- end card-body -->
                         </div>
                         <!-- end card -->
-
-                        <div class="row mt-3">
-                            <div class="col-12 text-center">
-                                <p> <a href="auth-recoverpw.html" class="text-muted ms-1">Forgot your password?</a></p>
-                                <p class="text-muted">Don't have an account? <a href="auth-register.html" class="text-primary fw-medium ms-1">Sign Up</a></p>
-                            </div> <!-- end col -->
-                        </div>
-                        <!-- end row -->
 
                     </div> <!-- end col -->
                 </div>
@@ -125,10 +95,10 @@
         </footer>
 
         <!-- Vendor js -->
-        <script src="{{ asset('/assets/js/vendor.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/vendor.min.js') }}"></script>
 
         <!-- App js -->
-        <script src="{{ asset('/assets/js/app.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/app.min.js') }}"></script>
         
     </body>
 </html>
