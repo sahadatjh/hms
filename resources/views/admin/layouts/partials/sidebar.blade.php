@@ -4,21 +4,21 @@
     <div class="logo-box">
         <a href="index.html" class="logo logo-dark text-center">
             <span class="logo-sm">
-                <img src="../assets/images/logo-sm-dark.png" alt="" height="24">
+                <img src="{{ asset('assets/admin/images/logo-sm-dark.png') }}" alt="" height="24">
                 <!-- <span class="logo-lg-text-light">Minton</span> -->
             </span>
             <span class="logo-lg">
-                <img src="../assets/images/logo-dark.png" alt="" height="20">
+                <img src="{{ asset('assets/admin/images/logo-dark.png') }}" alt="" height="20">
                 <!-- <span class="logo-lg-text-light">M</span> -->
             </span>
         </a>
 
         <a href="index.html" class="logo logo-light text-center">
             <span class="logo-sm">
-                <img src="../assets/images/logo-sm.png" alt="" height="24">
+                <img src="{{ asset('assets/admin/images/logo-sm.png') }}" alt="" height="24">
             </span>
             <span class="logo-lg">
-                <img src="../assets/images/logo-light.png" alt="" height="20">
+                <img src="{{ asset('assets/admin/images/logo-light.png') }}" alt="" height="20">
             </span>
         </a>
     </div>
@@ -27,7 +27,7 @@
 
         <!-- User box -->
         <div class="user-box text-center">
-            <img src="../assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme"
+            <img src="{{ asset('assets/admin/images/users/avatar-1.jpg') }}" alt="user-img" title="Mat Helme"
                 class="rounded-circle avatar-md">
             <div class="dropdown">
                 <a href="#" class="text-reset dropdown-toggle h5 mt-2 mb-1 d-block"
