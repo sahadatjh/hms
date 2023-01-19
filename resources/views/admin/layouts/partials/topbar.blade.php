@@ -265,7 +265,7 @@
                 <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <img src="{{ asset('assets/admin/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
                     <span class="pro-user-name ms-1">
-                        Nik Patel <i class="mdi mdi-chevron-down"></i> 
+                        {{ auth('admin')->user()->name }} <i class="mdi mdi-chevron-down"></i> 
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
@@ -301,19 +301,13 @@
                     <div class="dropdown-divider"></div>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="ri-logout-box-line"></i>
-                        <span>Logout</span>
-                    </a>
-                    {{-- <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
-    
-                        <x-responsive-nav-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
-                    </form> --}}
+                        <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item notify-item">
+                            <i class="ri-logout-box-line"></i>
+                            <span>{{ __('Log Out') }}</span>
+                        </a>
+                    </form>
 
                 </div>
             </li>
@@ -367,8 +361,8 @@
                 </a>
                 <!-- End mobile menu toggle-->
             </li>   
-
-            <li class="dropdown d-none d-xl-block">
+            
+            {{-- <li class="dropdown d-none d-xl-block">
                 <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     Create New
                     <i class="mdi mdi-chevron-down"></i> 
@@ -511,7 +505,7 @@
                     </div>
 
                 </div>
-            </li>
+            </li> --}}
         </ul>
         <div class="clearfix"></div>
     </div>

@@ -29,4 +29,10 @@ class LoginController extends Controller
            ])->onlyInput('email');
         }
     }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
+    }
 }
