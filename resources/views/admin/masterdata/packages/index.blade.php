@@ -39,7 +39,7 @@
                                             <td>{{ number_format($package->price) }}</td>
                                             <td>
                                                 <button class="btn btn-outline-primary waves-effect waves-light" title="Edit"><i class="fa fa-edit"></i></button>
-                                                <button class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></button>
+                                                <a href="{{ route('admin.masterdata.packages.delete',$package->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

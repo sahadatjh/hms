@@ -80,8 +80,9 @@ class PackageController extends Controller
      * @param  \App\Models\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Package $package)
+    public function delete($id)
     {
-        //
+        Package::find($id)->delete();
+        return redirect()->back()->withSuccess('Package deleted successfully!');
     }
 }
