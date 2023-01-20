@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
         Route::group(['prefix'=>'packages', 'as'=>'packages.'],function(){
             Route::get('/',[PackageController::class,'index'])->name('index');
             Route::post('/store',[PackageController::class,'store'])->name('store');
+            Route::post('/update',[PackageController::class,'update'])->name('update');
             Route::get('/delete/{id}',[PackageController::class,'delete'])->name('delete');
         });
     });

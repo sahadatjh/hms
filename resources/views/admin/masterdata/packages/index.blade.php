@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+@section('title','HMS | Packages')
 @section('content')
     <!-- start page title -->
     <div class="row">
@@ -38,7 +39,7 @@
                                             <td>{{ $package->name }}</td>
                                             <td>{{ number_format($package->price) }}</td>
                                             <td>
-                                                <button class="btn btn-outline-primary waves-effect waves-light" title="Edit"><i class="fa fa-edit"></i></button>
+                                                <button class="btn btn-outline-primary waves-effect waves-light btn-package-edit" title="Edit" data-id="{{ $package->id }}" data-name="{{ $package->name }}" data-price="{{ $package->price }}"><i class="fa fa-edit"></i></button>
                                                 <a href="{{ route('admin.masterdata.packages.delete',$package->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
@@ -53,9 +54,9 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="header-title">Add New Package</h2><hr>
+                    <h2 class="header-title" id="toastr-three">Add New Package</h2><hr>
 
-                    <form action="{{ route('admin.masterdata.packages.store') }}" method="post" class="needs-validation" novalidate>
+                    <form action="{{ route('admin.masterdata.packages.store') }}" method="post" class="needs-validation" id="package-form" novalidate>
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Package name</label>
@@ -72,7 +73,7 @@
                             </div>
                         </div>
                         
-                        <button class="btn btn-primary float-end" type="submit"><i class="fa fa-save"></i> SAVE</button>
+                        <button class="btn btn-success float-end" type="submit"><i class="fa fa-save"></i> SAVE</button>
                     </form>
                 </div>
             </div> 
@@ -91,6 +92,7 @@
     
     <script src="{{ asset('assets/admin/libs/parsleyjs/parsley.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/pages/form-validation.init.js') }}"></script>
+
 @endpush
 
 @push('scripts')
@@ -111,6 +113,19 @@
 
             //form validation
             $('.package-form').parsley();
+
+            //edit package
+            $('.btn-package-edit').on('click', function (e) {
+                const el = $( this );
+                const updateRoute = `{{ route("admin.masterdata.packages.update") }}`;
+            
+                $('#package-form').attr('action',updateRoute);
+                $('#package-form').append(`<input name="id" type="hidden" value="${el.data('id')}">`);
+                $('#name').val(el.data('name'));
+                $('#price').val(el.data('price'));
+            });
         });
     </script>
+    
+    
 @endpush

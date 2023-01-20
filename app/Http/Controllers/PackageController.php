@@ -69,9 +69,10 @@ class PackageController extends Controller
      * @param  \App\Models\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Package $package)
+    public function update(Request $request)
     {
-        //
+        Package::find($request->id)->update($request->all());
+        return redirect()->back()->withSuccess('Package updated successfully!');
     }
 
     /**
