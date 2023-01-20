@@ -15,10 +15,12 @@
 
         <a href="index.html" class="logo logo-light text-center">
             <span class="logo-sm">
-                <img src="{{ asset('assets/admin/images/logo-sm.png') }}" alt="" height="24">
+                {{-- <img src="{{ asset('assets/admin/images/logo-sm.png') }}" alt="" height="24"> --}}
+                <img src="{{ asset('assets/admin/images/sa-logo-sm.png') }}" alt="" height="24">
             </span>
             <span class="logo-lg">
-                <img src="{{ asset('assets/admin/images/logo-light.png') }}" alt="" height="20">
+                {{-- <img src="{{ asset('assets/admin/images/logo-light.png') }}" alt="" height="20"> --}}
+                <img src="{{ asset('assets/admin/images/sa-logo-lg.png') }}" alt="" height="20">
             </span>
         </a>
     </div>
@@ -71,21 +73,22 @@
                 <li class="menu-title">Navigation</li>
     
                 <li>
-                    <a href="#sidebarDashboards" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarDashboards" class="waves-effect">
+                    <a href="{{ route('admin.dashboard') }}">
                         <i class="mdi mdi-view-dashboard"></i>
-                        <span class="badge bg-success rounded-pill float-end">3</span>
                         <span> Dashboards </span>
                     </a>
-                    <div class="collapse" id="sidebarDashboards">
+                </li>
+                <li>
+                    <a href="#masterdata" data-bs-toggle="collapse" aria-expanded="false" aria-controls="masterdata" class="waves-effect">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        {{-- <span class="badge bg-success rounded-pill float-end">3</span> --}}
+                        <span> Masterdata </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="masterdata">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="index.html">Sales</a>
-                            </li>
-                            <li>
-                                <a href="dashboard-crm.html">CRM</a>
-                            </li>
-                            <li>
-                                <a href="dashboard-analytics.html">Analytics</a>
+                                <a href="{{ route('admin.masterdata.packages.index')}}">Packages</a>
                             </li>
                         </ul>
                     </div>

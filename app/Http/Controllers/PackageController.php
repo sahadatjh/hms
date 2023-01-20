@@ -14,7 +14,8 @@ class PackageController extends Controller
      */
     public function index()
     {
-        //
+        $data['packages'] = Package::all();
+        return view('admin.masterdata.packages.index',$data);
     }
 
     /**
@@ -35,7 +36,8 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Package::create($request->all());
+        return redirect()->back()->withSuccess('Package created successfully!');
     }
 
     /**

@@ -15,11 +15,11 @@ class PackageSeeder extends Seeder
      */
     public function run()
     {
-        $package = [
+        $packages = [
             ['name'=>'A','price'=>'150000'],
             ['name'=>'B','price'=>'200000'],
             ['name'=>'C','price'=>'300000'],
         ];
-        Package::insert($package);
+        Package::insert($packages);
     }
 }

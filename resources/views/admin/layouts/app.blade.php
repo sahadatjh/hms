@@ -9,6 +9,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.ico') }}">
+        
+        <!-- Jquery Toast css -->
+        <link href="{{ asset('assets/admin/libs/jquery-toast-plugin/jquery.toast.min.css') }}" rel="stylesheet" type="text/css" />
 
 		<!-- App css -->
 		<link href="{{ asset('assets/admin/css/bootstrap-material.min.css') }}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
@@ -68,7 +71,7 @@
         <!-- END wrapper -->
 
         <!-- Right Sidebar -->
-        {{-- @include('admin.layouts.partials.right-sidebar') --}}
+            {{-- @include('admin.layouts.partials.right-sidebar') --}}
         <!-- /Right-bar -->
 
         <!-- Right bar overlay-->
@@ -77,9 +80,11 @@
         <!-- Vendor js -->
         <script src="{{ asset('assets/admin/js/vendor.min.js') }}"></script>
 
+        @stack('vendorjs')
+
         <!-- App js -->
         <script src="{{ asset('assets/admin/js/app.min.js') }}"></script>
-
+        
         @stack('scripts')
         
     </body>
