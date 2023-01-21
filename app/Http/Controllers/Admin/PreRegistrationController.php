@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PreRegistration;
+use App\Models\Package;
 
 class PreRegistrationController extends Controller
 {
     public function index()
     {
         $data['preRegisterHajjis']=PreRegistration::with('package')->get();
-        // dd($data['preRegisterHajjis']->toArray());
         return view('admin.hajjis.pre-registrations.index',$data);
     }
 

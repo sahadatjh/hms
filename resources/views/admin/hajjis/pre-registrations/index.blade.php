@@ -26,8 +26,14 @@
                             <thead>
                                 <tr>
                                     <th>SL No</th>
-                                    <th>Package Name</th>
+                                    <th>Name</th>
+                                    <th>NG Number</th>
+                                    <th>Mobile</th>
+                                    <th>Package</th>
                                     <th>Price</th>
+                                    <th>NID No</th>
+                                    <th>Data Of Birth</th>
+                                    <th>District Action</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -37,7 +43,13 @@
                                         <tr>
                                             <td>{{ $loop->iteration	 }}</td>
                                             <td>{{ $item->name }}</td>
+                                            <td>{{ $item->ng }}</td>
+                                            <td>{{ $item->mobile }}</td>
                                             <td>{{ $item->package->name }}</td>
+                                            <td>{{ number_format($item->package->price) }}</td>
+                                            <td>{{ $item->nid }}</td>
+                                            <td>{{ date('d-m-Y', strtotime($item->dob)) }}</td>
+                                            <td>{{ $item->district }}</td>
                                             <td>
                                                 <button class="btn btn-outline-primary waves-effect waves-light btn-package-edit" title="Edit"><i class="fas fa-pencil-alt"></i></button>
                                                 <a href="{{ route('admin.masterdata.packages.delete',$item->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
