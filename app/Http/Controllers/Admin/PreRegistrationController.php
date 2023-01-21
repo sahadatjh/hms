@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PreRegistration;
 
 class PreRegistrationController extends Controller
 {
     public function index()
     {
-        return view('admin.hajjis.pre-registrations.index');
+        $data['preRegisterHajjis']=PreRegistration::with('package')->get();
+        // dd($data['preRegisterHajjis']->toArray());
+        return view('admin.hajjis.pre-registrations.index',$data);
     }
 
     public function create()

@@ -17,7 +17,7 @@
         </div>
     </div>    
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h2 class="header-title">Basic Data Table</h2><hr>
@@ -32,51 +32,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @if (!$packages->isEmpty())
-                                    @foreach ($packages as $package)
+                                @if (!$preRegisterHajjis->isEmpty())
+                                    @foreach ($preRegisterHajjis as $item)
                                         <tr>
                                             <td>{{ $loop->iteration	 }}</td>
-                                            <td>{{ $package->name }}</td>
-                                            <td>{{ number_format($package->price) }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->package->name }}</td>
                                             <td>
-                                                <button class="btn btn-outline-primary waves-effect waves-light btn-package-edit" title="Edit" data-id="{{ $package->id }}" data-name="{{ $package->name }}" data-price="{{ $package->price }}"><i class="fas fa-pencil-alt"></i></button>
-                                                <a href="{{ route('admin.masterdata.packages.delete',$package->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
+                                                <button class="btn btn-outline-primary waves-effect waves-light btn-package-edit" title="Edit"><i class="fas fa-pencil-alt"></i></button>
+                                                <a href="{{ route('admin.masterdata.packages.delete',$item->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
-                                @endif --}}
+                                @endif
                             </tbody>
                         </table>
                     </div>
                 </div> <!-- end card body-->
             </div> <!-- end card -->
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="header-title" id="toastr-three">Add New Package</h2><hr>
-
-                    <form action="{{ route('admin.masterdata.packages.store') }}" method="post" class="needs-validation" id="package-form" novalidate>
-                        @csrf
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Package name</label>
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Type package name" required>
-                            <div class="invalid-feedback">
-                                This field is required! 
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Package price</label>
-                            <input name="price" type="number" class="form-control" id="price" placeholder="Type package name" required>
-                            <div class="invalid-feedback">
-                                This field is required! 
-                            </div>
-                        </div>
-                        
-                        <button class="btn btn-success float-end" type="submit"><i class="fa fa-save"></i> SAVE</button>
-                    </form>
-                </div>
-            </div> 
         </div>
     </div>
     <!-- end page title -->
