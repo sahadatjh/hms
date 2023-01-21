@@ -1,16 +1,16 @@
 @extends('admin.layouts.app')
-@section('title','HMS | Packages')
+@section('title','HMS | Pre Registration')
 @section('content')
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box page-title-box-alt">
-                <h4 class="page-title">Package List</h4>
+                <h4 class="page-title">Pre-Registration</h4>
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Masterdata</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Packages</a></li>
-                        <li class="breadcrumb-item active">Package List</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Hajji</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pre Registraion</a></li>
+                        <li class="breadcrumb-item active">Pre Register Hajji</li>
                     </ol>
                 </div>
             </div>
@@ -20,7 +20,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="header-title">All Packages</h2><hr>
+                    <h2 class="header-title">Basic Data Table</h2><hr>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="packageTable">
                             <thead>
@@ -32,7 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (!$packages->isEmpty())
+                                {{-- @if (!$packages->isEmpty())
                                     @foreach ($packages as $package)
                                         <tr>
                                             <td>{{ $loop->iteration	 }}</td>
@@ -44,7 +44,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                @endif
+                                @endif --}}
                             </tbody>
                         </table>
                     </div>

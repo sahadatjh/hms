@@ -80,7 +80,7 @@
                 </li>
                 <li>
                     <a href="#masterdata" data-bs-toggle="collapse" aria-expanded="false" aria-controls="masterdata" class="waves-effect">
-                        <i class="mdi mdi-view-dashboard"></i>
+                        <i class=" fas fa-network-wired"></i>
                         {{-- <span class="badge bg-success rounded-pill float-end">3</span> --}}
                         <span> Masterdata </span>
                         <span class="menu-arrow"></span>
@@ -88,7 +88,22 @@
                     <div class="collapse" id="masterdata">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('admin.masterdata.packages.index')}}">Packages</a>
+                                <a href="{{ route('admin.masterdata.packages.index')}}"><i class=" fas fa-arrow-right"> </i> Packages</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#preRegistration" data-bs-toggle="collapse" aria-expanded="false" aria-controls="preRegistration" class="waves-effect">
+                        <i class="fas fa-handshake"></i>
+                        {{-- <span class="badge bg-success rounded-pill float-end">3</span> --}}
+                        <span> Pre Registraion </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="preRegistration">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('admin.hajjis.pre_registrations.index')}}"><i class=" fas fa-arrow-right"> </i> Pre register hajjis</a>
                             </li>
                         </ul>
                     </div>

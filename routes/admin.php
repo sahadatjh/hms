@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\PackageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\PreRegistrationController;
 
 Route::group(['middleware' => ['guest:admin'],'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/login',[LoginController::class, 'create'])->name('login');
@@ -20,6 +21,12 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
             Route::post('/store',[PackageController::class,'store'])->name('store');
             Route::post('/update',[PackageController::class,'update'])->name('update');
             Route::get('/delete/{id}',[PackageController::class,'delete'])->name('delete');
+        });
+    });
+
+    Route::group(['prefix'=>'hajjis', 'as'=>'hajjis.'],function(){
+        Route::group(['prefix'=>'pre-registrations', 'as'=>'pre_registrations.'],function(){
+            Route::get('/',[PreRegistrationController::class,'index'])->name('index');
         });
     });
 });

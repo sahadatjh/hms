@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Package;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PackageController extends Controller
 {
@@ -36,6 +37,11 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:packages|max:255',
+            'price' => 'required|numeric',
+        ]);
+
         Package::create($request->all());
         return redirect()->back()->withSuccess('Package created successfully!');
     }
@@ -71,6 +77,11 @@ class PackageController extends Controller
      */
     public function update(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:packages|max:255',
+            'price' => 'required|numeric',
+        ]);
+        
         Package::find($request->id)->update($request->all());
         return redirect()->back()->withSuccess('Package updated successfully!');
     }
