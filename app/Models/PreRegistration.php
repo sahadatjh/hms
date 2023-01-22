@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Database\Factories\HajjiFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PreRegistration extends Model
 {
     use HasFactory;
+
+    protected $table = 'hajjis';
+
     protected $fillable = [
         'pre_registrations',
         'name',
@@ -37,5 +41,5 @@ class PreRegistration extends Model
     public function package()
     {
         return $this->belongsTo(Package::class);
-    }
+    }	
 }

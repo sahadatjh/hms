@@ -20,7 +20,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="header-title">Basic Data Table</h2><hr>
+                    <h2 class="header-title">Pre-Register Hajjis</h2>
+                    <hr>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="packageTable">
                             <thead>
@@ -33,7 +34,7 @@
                                     <th>Price</th>
                                     <th>NID No</th>
                                     <th>Data Of Birth</th>
-                                    <th>District Action</th>
+                                    <th>District</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

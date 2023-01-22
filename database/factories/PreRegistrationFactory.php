@@ -18,6 +18,7 @@ class PreRegistrationFactory extends Factory
      */
     public function definition()
     {
+        $distrtict_id = random_int(1,64);
         return [
             'name'            => fake()->name(),
             'fathers_name'    => fake()->name(),
@@ -29,7 +30,8 @@ class PreRegistrationFactory extends Factory
             'ng'              => fake()->numerify('##########'),
             'tracking_number' => fake()->numerify('#######'),
             'dob'             => now()->toDateString(),
-            'district_id'     => random_int(1,64),
+            'district_id'     => $distrtict_id,
+            'district'        =>District::find($distrtict_id)->name,
             'gender'          => 'Male',
             'address'         => fake()->address(),
             'remarks'         => fake()->sentence(1),

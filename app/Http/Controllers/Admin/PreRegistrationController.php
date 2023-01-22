@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\District;
 use App\Models\PreRegistration;
 use App\Models\Package;
 
@@ -17,7 +18,9 @@ class PreRegistrationController extends Controller
 
     public function create()
     {
-        //
+        $data['packages']=Package::all();
+        $data['districts']=District::all();
+        return view('admin.hajjis.pre-registrations.create',$data);
     }
 
     public function store(Request $request)
