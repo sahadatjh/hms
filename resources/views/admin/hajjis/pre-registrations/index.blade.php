@@ -28,6 +28,7 @@
                                 <tr>
                                     <th>SL No</th>
                                     <th>Name</th>
+                                    <th>Photo</th>
                                     <th>NG Number</th>
                                     <th>Mobile</th>
                                     <th>Package</th>
@@ -44,16 +45,23 @@
                                         <tr>
                                             <td>{{ $loop->iteration	 }}</td>
                                             <td>{{ $item->name }}</td>
+                                            <td>
+                                                <img src="{{ asset('/dynamic-assets/hajji-photo').'/'.$item->photo }}" alt="Photo" style="height: 50px; width: 50px" class="rounded">
                                             <td>{{ $item->ng }}</td>
                                             <td>{{ $item->mobile }}</td>
                                             <td>{{ $item->package->name }}</td>
                                             <td>{{ number_format($item->package->price) }}</td>
                                             <td>{{ $item->nid }}</td>
                                             <td>{{ date('d-m-Y', strtotime($item->dob)) }}</td>
-                                            <td>{{ $item->district }}</td>
+                                            <td>{{ $item->district_id }}</td>
                                             <td>
-                                                <button class="btn btn-outline-primary waves-effect waves-light btn-package-edit" title="Edit"><i class="fas fa-pencil-alt"></i></button>
-                                                <a href="{{ route('admin.masterdata.packages.delete',$item->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
+                                                <a href="{{ route('admin.hajjis.pre_registrations.edit',$item->id) }}" class="btn btn-outline-primary waves-effect waves-light btn-package-edit" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="{{ route('admin.hajjis.pre_registrations.delete',$item->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
+                                                {{-- <form method="post" action="{{ route('admin.hajjis.pre_registrations.delete',$item->id) }}">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></button>
+                                                </form> --}}
                                             </td>
                                         </tr>
                                     @endforeach

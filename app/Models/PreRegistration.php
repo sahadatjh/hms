@@ -38,6 +38,23 @@ class PreRegistration extends Model
         'pre_registrations'
     ];
 
+    public static $rules = [
+        'name'        => 'required|unique:hajjis|max:255',
+        'occupation'  => 'required',
+        'mobile'      => 'required',
+        'nid'         => 'required|numeric',
+        'dob'         => 'required',
+        'district_id' => 'required',
+        'gender'      => 'required',
+        'address'     => 'required',
+        'package_id'  => 'required',
+    ];
+
+    public function district()
+    {
+        return $this->belongsTo(District::class,'district_id','id');
+    }
+    
     public function package()
     {
         return $this->belongsTo(Package::class);

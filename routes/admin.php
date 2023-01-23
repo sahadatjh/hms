@@ -28,10 +28,10 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
         Route::group(['prefix'=>'pre-registrations', 'as'=>'pre_registrations.'],function(){
             Route::get('/',[PreRegistrationController::class,'index'])->name('index');
             Route::get('/create',[PreRegistrationController::class,'create'])->name('create');
-            Route::get('/store',[PreRegistrationController::class,'store'])->name('store');
-            Route::post('/edit',[PreRegistrationController::class,'edit'])->name('edit');
+            Route::post('/store',[PreRegistrationController::class,'store'])->name('store');
+            Route::get('/edit/{id}',[PreRegistrationController::class,'edit'])->name('edit');
             Route::post('/update',[PreRegistrationController::class,'update'])->name('update');
-            Route::post('/delete',[PreRegistrationController::class,'delete'])->name('delete');
+            Route::get('/delete/{id}',[PreRegistrationController::class,'delete'])->name('delete');
         });
     });
 });

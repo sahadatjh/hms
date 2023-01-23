@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="header-title">Add New Hajji</h2><hr>
-                    <form action="{{ route('admin.hajjis.pre_registrations.store') }}" method="post" class="needs-validation" id="hajji-form" novalidate >
+                    <form action="{{ route('admin.hajjis.pre_registrations.store') }}" method="post" class="needs-validation" id="hajji-form" enctype="multipart/form-data" novalidate >
                         @csrf
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -43,22 +43,22 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="occupation" class="form-label">Occupation</label>
-                                    <input name="occupation" type="text" class="form-control" id="occupation" value="{{ old('occupation')}}" placeholder="Type occupation">
+                                    <input name="occupation" type="text" class="form-control" id="occupation" value="{{ old('occupation')}}" placeholder="Type occupation" required>
+                                    <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="mobile" class="form-label">Mobile</label>
-                                    <input name="mobile" type="text" class="form-control" id="mobile" value="{{ old('mobile')}}" placeholder="Type mobile Number">
+                                    <input name="mobile" type="number" class="form-control" id="mobile" value="{{ old('mobile')}}" placeholder="Ex: 01910922069" required>
                                     <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="nid" class="form-label">NID Number</label>
-                                    <input name="nid" type="number" class="form-control" id="nid" value="{{ old('nid')}}" placeholder="Type NID number">
+                                    <input name="nid" type="number" class="form-control" id="nid" value="{{ old('nid')}}" placeholder="Type NID number" required>
                                     <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="ng" class="form-label">NG Number</label>
-                                    <input name="ng" type="text" class="form-control" id="ng" value="{{ old('ng')}}" placeholder="Type ng number">
-                                    <div class="invalid-feedback">This field is required! </div>
+                                    <input name="ng" type="text" class="form-control" id="ng" value="{{ old('ng')}}" placeholder="Type ng number" >
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="tracking_number" class="form-label">Tracking number</label>
@@ -67,50 +67,57 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="col-form-label">Date of birth</label>
                                     <div class="input-group position-relative" id="datepicker2">
-                                        <input type="text" class="form-control" data-provide="datepicker" data-date-format="dd M, yyyy" data-date-autoclose="true" data-date-container="#datepicker2">
+                                        <input name="dob" type="text" class="form-control" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2">
                                         <span class="input-group-text"><i class="ri-calendar-event-fill"></i></span>
                                     </div><!-- input-group -->
+                                    <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="district_id" class="form-label">District</label>
-                                    <select name="district_id" id="district_id" class="form-control">
+                                    <select name="district_id" id="district_id" class="form-control" required>
                                         <option value="" selected disabled>Select District</option>
                                         @foreach ($districts as $district)
                                             <option value="{{ $district->id }}">{{ $district->name }}</option>
                                         @endforeach
                                     </select>
+                                    <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="gender" class="form-label">Gender</label>
-                                    <select name="gender" id="gender" class="form-control">
+                                    <select name="gender" id="gender" class="form-control" required>
                                         <option value="" selected disabled>Select Gender</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         <option value="Others">Others</option>
-                                        
                                     </select>
+                                    <div class="invalid-feedback">This field is required! </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <textarea name="address" id="address" class="form-control" required></textarea>
+                                    <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="package_id" class="form-label">Package</label>
-                                    <select name="package_id" id="package_id" class="form-control">
+                                    <select name="package_id" id="package_id" class="form-control" required>
                                         <option value="" selected disabled>Select package</option>
                                         @foreach ($packages as $package)
                                             <option value="{{ $package->id }}">{{ $package->name }}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="address" class="form-label">Address</label>
-                                    <textarea name="address" id="address" class="form-control"></textarea>
+                                    <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="remarks" class="form-label">Remarks</label>
-                                    <textarea name="remarks" id="remarks" class="form-control"></textarea>
+                                    <textarea name="remarks" id="remarks" class="form-control" rows="7"></textarea>
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="photo" class="form-label">Photo </label>
+                                    <input name="photo" type="file" class="dropify" data-default-file="" data-height="150" data-allowed-file-extensions="jpg jpeg png svg"/>
+                                </div>
+
                             </div>
-                            
-                            <button class="btn btn-success float-end" type="submit"><i class="fa fa-save"></i> SAVE</button>
-                    
+                            <button class="btn btn-success btn-lg float-end" type="submit"><i class="fa fa-save"></i> SAVE</button>
                     </form>
                 </div> <!-- end card body-->
             </div> <!-- end card -->
@@ -122,6 +129,7 @@
 
     @push('css')
         <link href="{{ asset('assets/admin/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/admin/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"/>
     @endpush
     
     @push('vendorjs')
@@ -130,6 +138,9 @@
 
         <script src="{{ asset('assets/admin/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
         <script src="{{ asset('assets/admin/libs/moment/min/moment.min.js') }}"></script>
+
+         <!-- Plugins js -->
+         <script src="{{ asset('assets/admin/libs/dropify/js/dropify.min.js') }}"></script>
     @endpush
     
     @push('scripts')
@@ -139,8 +150,9 @@
             $(document).ready(function () {
                 //form validation
                 $('.package-form').parsley();
+                
+                //dropify image
+                $('.dropify').dropify();
             });
         </script>
-        
-        
     @endpush
