@@ -103,13 +103,25 @@
                                     </select>
                                     <div class="invalid-feedback">This field is required! </div>
                                 </div>
+                                @if ($hajji->status === 2)
+                                    <div class="col-md-6 mb-3">
+                                        <label for="passport_no" class="form-label">Passport number</label>
+                                        <input name="passport_no" type="text" class="form-control" id="passport_no" required value="{{ $hajji->passport_no }}">
+                                        <div class="invalid-feedback">This field is required! </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="pid" class="form-label">PID number</label>
+                                        <input name="pid" type="text" class="form-control" id="pid" required value="{{ $hajji->pid }}">
+                                        <div class="invalid-feedback">This field is required! </div>
+                                    </div>
+                                @endif
                                 <div class="col-md-3 mb-3">
                                     <label for="address" class="form-label">Address</label>
                                     <textarea name="address" id="address" class="form-control" rows="7" required>{{ $hajji->address }}</textarea>
                                     <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
-                                    <label for="photo" class="form-label">Photo </label>
+                                    <label for="photo" class="form-label">Photo (Bellow to 200kb) </label>
                                     <input name="photo" type="file" class="dropify" data-default-file="{{ asset('/dynamic-assets/hajji-photo').'/'.$hajji->photo }}" data-height="150" data-allowed-file-extensions="jpg jpeg png svg"/>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -117,6 +129,7 @@
                                     <textarea name="remarks" id="remarks" class="form-control" rows="7">{{ $hajji->remarks }}</textarea>
                                 </div>
                             </div>
+                            
                             <hr>
                             <button class="btn btn-success btn-lg float-end" type="submit"><i class="fa fa-save"></i> UPDATE</button>
                     </form>

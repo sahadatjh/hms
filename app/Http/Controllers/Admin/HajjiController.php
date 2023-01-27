@@ -64,9 +64,14 @@ class HajjiController extends Controller
 
     public function update(FileUploadService $uploads, Request $request)
     {
+        $req = $request->all();
+
+        // $rules = Hajji::$rules;
+        // $rules['name'] = $rules['name'] . ',id,' . $request->id;
+        // $request->validate($rules);
+        
         $request->validate(Hajji::$rules);
 
-        $req = $request->all();
         $hajji = Hajji::findOrFail($req['id']);
         
         if ($hajji) {
@@ -81,7 +86,12 @@ class HajjiController extends Controller
         }
 
         $hajji->update($req);
-        return redirect()->route('admin.hajjis.pre_registrations.index')->with('success','Hajji updated successfully!');
+
+        if ($hajji->status == 1) {
+            return redirect()->route('admin.hajjis.pre_registrations.index')->withSuccess('Hajji updated successfully!');
+        }
+        return redirect()->route('admin.hajjis.running_hajjis.index')->withSuccess('Hajji updated successfully!');
+
     }
 
     public function delete(FileUploadService $uploads, $id)

@@ -40,7 +40,7 @@ class Hajji extends Model
     ];
 
     public static $rules = [
-        'name'        => 'required|unique:hajjis|max:255',
+        'name'        => 'required|max:255',
         'occupation'  => 'required',
         'mobile'      => 'required',
         'nid'         => 'required|numeric',
