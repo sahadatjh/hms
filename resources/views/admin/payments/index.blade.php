@@ -24,19 +24,19 @@
                     <h2 class="header-title">Hajji search for take payment</h2><hr>
                     <div class="row">
                         <div class="col-md-3">
-                            <input type="text" name="ng" class="form-control" placeholder="Search NG...">
+                            <input type="text" name="ng" class="form-control" id="search_ng" placeholder="Search by NG...">
                         </div>
                         {{-- <div class="col-md-2">
-                            <input type="text" name="name" class="form-control" placeholder="Search name...">
+                            <input type="text" name="name" class="form-control" placeholder="Search by name...">
                         </div> --}}
                         <div class="col-md-3">
-                            <input type="text" name="phone" class="form-control" placeholder="Search phone...">
+                            <input type="text" name="phone" class="form-control" id="search_phone" placeholder="Search by phone...">
                         </div>
                         <div class="col-md-3">
-                            <input type="text" name="nid" class="form-control" placeholder="Search nid...">
+                            <input type="text" name="nid" class="form-control" id="search_nid" placeholder="Search by NID...">
                         </div>
                         <div class="col-md-3">
-                            <button class="btn btn-success ">Search <i class="fas fa-search"></i></button>
+                            <button class="btn btn-success" onclick="searchHajji()" id="btnSearch">Search <i class="fas fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -218,33 +218,45 @@
             //form validation
             $('.payment-form').parsley();
 
+            $('#btnSearch').on('click', searchHajji);
+
+            const searchHajji = () => {
+                const ng = $('#search_ng').val().trim();
+                const phone = $('#search_phone').val().trim();
+                const nid = $('#search_nid').val().trim();
+                console.log(ng);
+                console.log(phone);
+                console.log(nid);
+            }
+
             $('#payment_method').on('change', function () {
                 const payment_method = $( this ).val();
                     if (payment_method) {
                     console.log(payment_method);
-                        if (payment_method === "Cash payment") {
-                            $('#branch_name, #bank_name, #check_no, #deposite_no, #transaction_no').addClass('d-none');
-                            $("input[name=bank_name], input[name=branch_name], input[name=check_no], input[name=deposite_no], input[name=transaction_no]").prop('required',false);
-                        }else if(payment_method === "Check payment"){
-                            $('#bank_name, #branch_name, #check_no').removeClass('d-none');
-                            $('#deposite_no, #transaction_no').addClass('d-none');
-                            $("input[name=bank_name], input[name=branch_name], input[name=check_no], input[name=deposite_no]").prop('required',true);
-                            $("input[name=deposite_no], input[name=transaction_no]").prop('required',false);
-                        }else if(payment_method === "Bank Deposite"){
-                            $('#branch_name, #bank_name, #deposite_no').removeClass('d-none');
-                            $('#check_no, #transaction_no').addClass('d-none');
-                            $("input[name=bank_name], input[name=branch_name],input[name=deposite_no]").prop('required',true);
-                            $("input[name=check_no], input[name=transaction_no]").prop('required',false);
-                        }else if(payment_method === "Online pay"){
-                            $('#bank_name, #branch_name, #deposite_no, #check_no').addClass('d-none');
-                            $('#transaction_no').removeClass('d-none');
-                            $("input[name=bank_name], input[name=branch_name], input[name=check_no], input[name=deposite_no]").prop('required',false);
-                            $("input[name=transaction_no]").prop('required',true);
-                        }else{
-                            alert('Please select any payment method.');
-                        }
+                    if (payment_method === "Cash payment") {
+                        $('#branch_name, #bank_name, #check_no, #deposite_no, #transaction_no').addClass('d-none');
+                        $("input[name=bank_name], input[name=branch_name], input[name=check_no], input[name=deposite_no], input[name=transaction_no]").prop('required',false);
+                    }else if(payment_method === "Check payment"){
+                        $('#bank_name, #branch_name, #check_no').removeClass('d-none');
+                        $('#deposite_no, #transaction_no').addClass('d-none');
+                        $("input[name=bank_name], input[name=branch_name], input[name=check_no], input[name=deposite_no]").prop('required',true);
+                        $("input[name=deposite_no], input[name=transaction_no]").prop('required',false);
+                    }else if(payment_method === "Bank Deposite"){
+                        $('#branch_name, #bank_name, #deposite_no').removeClass('d-none');
+                        $('#check_no, #transaction_no').addClass('d-none');
+                        $("input[name=bank_name], input[name=branch_name],input[name=deposite_no]").prop('required',true);
+                        $("input[name=check_no], input[name=transaction_no]").prop('required',false);
+                    }else if(payment_method === "Online pay"){
+                        $('#bank_name, #branch_name, #deposite_no, #check_no').addClass('d-none');
+                        $('#transaction_no').removeClass('d-none');
+                        $("input[name=bank_name], input[name=branch_name], input[name=check_no], input[name=deposite_no]").prop('required',false);
+                        $("input[name=transaction_no]").prop('required',true);
+                    }else{
+                        alert('Please select any payment method.');
+                    }
                 }
             });
+
         });
     </script>
     
