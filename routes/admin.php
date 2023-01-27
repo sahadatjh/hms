@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\HajjiController;
 use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Http\Controllers\Admin\HajjiController;
 
 Route::redirect('/admin', '/admin/login');
 
@@ -46,6 +47,13 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
                 Route::get('/','runningHajjis')->name('index');
                 Route::get('/back/{id}','backToPreRegister')->name('back_preregister');
             });
+        });
+    });
+
+    Route::group(['prefix'=>'payments', 'as'=>'payments.'],function(){
+        Route::controller(PaymentController::class)->group(function(){
+            Route::get('/','index')->name('index');
+            Route::post('/store','store')->name('store');
         });
     });
 });

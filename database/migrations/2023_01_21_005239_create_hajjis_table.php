@@ -31,12 +31,16 @@ return new class extends Migration
             $table->string('gender');
             $table->foreignId('package_id')->nullable();
             $table->foreign('package_id')->references('id')->on('packages');
+            $table->double('discount',8,2)->nullable();
+            $table->boolean('is_percent')->nullable()->comment('0 for flate discount, 1 for percent discount');
             $table->string('address');
             $table->text('remarks')->nullable();
             $table->string('photo')->nullable();
             $table->string('pid')->nullable();
             $table->string('passport_no')->nullable();
             $table->string('passport_image')->nullable();
+            $table->string('visa_number')->nullable();
+            $table->string('visa_image')->nullable();
             $table->integer('status')->default(1)->comment('1 for pre registration, 2 for runnig, 3 for archive, 4 for cancel');
             $table->timestamps();
         });

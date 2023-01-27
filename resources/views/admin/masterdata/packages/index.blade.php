@@ -54,7 +54,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="header-title" id="toastr-three">Add New Package</h2><hr>
+                    <h2 class="header-title" >Add New Package</h2><hr>
 
                     <form action="{{ route('admin.masterdata.packages.store') }}" method="post" class="needs-validation" id="package-form" novalidate>
                         @csrf
@@ -92,7 +92,6 @@
     
     <script src="{{ asset('assets/admin/libs/parsleyjs/parsley.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/pages/form-validation.init.js') }}"></script>
-
 @endpush
 
 @push('scripts')

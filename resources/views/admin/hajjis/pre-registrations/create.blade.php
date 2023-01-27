@@ -67,7 +67,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="col-form-label">Date of birth</label>
                                     <div class="input-group position-relative" id="datepicker2">
-                                        <input name="dob" type="text" class="form-control" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2">
+                                        <input name="dob" type="text" class="form-control" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2" autocomplete="off">
                                         <span class="input-group-text"><i class="ri-calendar-event-fill"></i></span>
                                     </div><!-- input-group -->
                                     <div class="invalid-feedback">This field is required! </div>

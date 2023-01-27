@@ -120,7 +120,34 @@
                     <div class="collapse" id="runningHajji">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('admin.hajjis.running_hajjis.index')}}"><i class=" fas fa-arrow-right"> </i> All Hajji (Running)</a>
+                                <a href="{{ route('admin.hajjis.running_hajjis.index')}}"><i class=" fas fa-arrow-right"> </i> Running Hajji List</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#archives" data-bs-toggle="collapse" aria-expanded="false" aria-controls="archives" class="waves-effect">
+                        <i class="fas fa-archive"></i>
+                        <span> Archives </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="archives">
+                        <ul class="nav-second-level">
+                            <li><a href="#"><i class=" fas fa-arrow-right"> </i> Completed Hajji List</a></li>
+                            <li><a href="#"><i class=" fas fa-arrow-right"> </i> Transfered Hajji List</a></li>
+                            <li><a href="#"><i class=" fas fa-arrow-right"> </i> Canceled Hajji List</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#payments" data-bs-toggle="collapse" aria-expanded="false" aria-controls="payments" class="waves-effect">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span> Payments</span><span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="payments">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('admin.payments.index') }}"><i class=" fas fa-arrow-right"> </i> Take Payments</a>
                             </li>
                             {{-- <li>
                                 <a href="{{ route('admin.hajjis.pre_registrations.index')}}"><i class=" fas fa-arrow-right"> </i> Pre register hajjis</a>
