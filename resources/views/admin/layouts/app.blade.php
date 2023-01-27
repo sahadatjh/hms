@@ -28,8 +28,11 @@
 
 		<!-- icons -->
 		<link href="{{ asset('assets/admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-
+        
         @stack('css')
+        
+		<link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet" type="text/css" />
+
 
     </head>
 

@@ -45,8 +45,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (!$preRegisterHajjis->isEmpty())
-                                    @foreach ($preRegisterHajjis as $item)
+                                @if (!$runningHajjis->isEmpty())
+                                    @foreach ($runningHajjis as $item)
                                         <tr>
                                             <td>
                                                 <div class="form-check">
@@ -67,13 +67,7 @@
                                             <td>
                                                 <a href="{{ route('admin.hajjis.pre_registrations.show',$item->id) }}" class="btn btn-outline-info waves-effect waves-light" title="View"><i class="fas fa-eye"></i></a>
                                                 <a href="{{ route('admin.hajjis.pre_registrations.edit',$item->id) }}" class="btn btn-outline-primary waves-effect waves-light" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a href="{{ route('admin.hajjis.pre_registrations.migrate',$item->id) }}" class="btn btn-outline-purple waves-effect waves-light" title="Move to running"><i class="fas fa-rocket"></i></a>
-                                                {{-- <a href="{{ route('admin.hajjis.pre_registrations.delete',$item->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a> --}}
-                                                {{-- <form method="post" action="{{ route('admin.hajjis.pre_registrations.delete',$item->id) }}">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></button>
-                                                </form> --}}
+                                                <a href="{{ route('admin.hajjis.running_hajjis.back_preregister',$item->id) }}" class="btn btn-outline-purple waves-effect waves-light" title="Back to pre register."><i class="fas fa-undo"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

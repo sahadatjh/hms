@@ -35,7 +35,8 @@ class Hajji extends Model
         'pid',
         'passport_no',
         'passport_image',
-        'pre_registrations'
+        'pre_registrations',
+        'status'
     ];
 
     public static $rules = [

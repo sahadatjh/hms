@@ -36,6 +36,7 @@ class HajjiFactory extends Factory
             'address'         => fake()->address(),
             'remarks'         => fake()->sentence(1),
             'package_id'      =>random_int(1,3),
+            'photo'           =>'avatar-1.jpg',
         ];
     }
 }

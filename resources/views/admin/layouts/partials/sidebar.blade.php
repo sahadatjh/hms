@@ -120,7 +120,7 @@
                     <div class="collapse" id="runningHajji">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('admin.hajjis.pre_registrations.create')}}"><i class=" fas fa-arrow-right"> </i> All Hajji (Running)</a>
+                                <a href="{{ route('admin.hajjis.running_hajjis.index')}}"><i class=" fas fa-arrow-right"> </i> All Hajji (Running)</a>
                             </li>
                             {{-- <li>
                                 <a href="{{ route('admin.hajjis.pre_registrations.index')}}"><i class=" fas fa-arrow-right"> </i> Pre register hajjis</a>

@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('pid')->nullable();
             $table->string('passport_no')->nullable();
             $table->string('passport_image')->nullable();
+            $table->integer('status')->default(1)->comment('1 for pre registration, 2 for runnig, 3 for archive, 4 for cancel');
             $table->timestamps();
         });
     }

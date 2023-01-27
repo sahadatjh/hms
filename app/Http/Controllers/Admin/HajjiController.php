@@ -15,8 +15,7 @@ class HajjiController extends Controller
 {
     public function index()
     {
-        $data['preRegisterHajjis']=Hajji::with('package','district')->orderBy('id','desc')->get();
-        // dd($data['preRegisterHajjis']->toArray());
+        $data['preRegisterHajjis']=Hajji::where('status',1)->with('package','district')->orderBy('id','desc')->get();
         return view('admin.hajjis.pre-registrations.index',$data);
     }
 
@@ -65,7 +64,6 @@ class HajjiController extends Controller
 
     public function update(FileUploadService $uploads, Request $request)
     {
-        // dd($request->all());
         $request->validate(Hajji::$rules);
 
         $req = $request->all();
@@ -98,4 +96,33 @@ class HajjiController extends Controller
         }
         return redirect()->back()->withSuccess('Something is wrong!');
     }
+
+    public function moveToRunning($id)
+    {
+        $hajji = Hajji::findOrFail($id);
+        if ($hajji){
+            $hajji->fill(['status' => 2])->save();
+        }
+        else return redirect()->back()->withErrors('Something is wrong!');
+        return redirect()->back()->withSuccess($hajji->name.', Move to running successfully!');
+    }
+
+    //running hujjis
+    public function runningHajjis()
+    {
+        $data['runningHajjis']=Hajji::where('status',2)->with('package','district')->orderBy('id','desc')->get();
+
+        return view('admin.hajjis.running-hajjis.index',$data);   
+    }
+
+    public function backToPreRegister($id)
+    {
+        $hajji = Hajji::findOrFail($id);
+        if ($hajji){
+            $hajji->fill(['status' => 1])->save();
+        }
+        else return redirect()->back()->withErrors('Something is wrong!');
+        return redirect()->back()->withSuccess($hajji->name.', Move to pre-register successfully!');
+    }
 }
+

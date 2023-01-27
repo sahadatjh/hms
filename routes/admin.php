@@ -36,15 +36,16 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
                 Route::get('/edit/{id}','edit')->name('edit');
                 Route::post('/update','update')->name('update');
                 Route::get('/delete/{id}','delete')->name('delete');
-            });
 
-            Route::group(['prefix'=>'running-hajji', 'as'=>'running_hajji.'],function(){
-                // Route::controller(RunningHajjiController::class)->group(function()
-                // {
-                //     Route::get('/','index');
-                // });
+                Route::get('/migrate/{id}','moveToRunning')->name('migrate');
             });
-            
+        });
+
+        Route::group(['prefix'=>'running-hajjis', 'as'=>'running_hajjis.'],function(){
+            Route::controller(HajjiController::class)->group(function(){
+                Route::get('/','runningHajjis')->name('index');
+                Route::get('/back/{id}','backToPreRegister')->name('back_preregister');
+            });
         });
     });
 });
