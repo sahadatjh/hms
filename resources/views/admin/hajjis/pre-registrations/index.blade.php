@@ -53,9 +53,10 @@
                                             <td>{{ number_format($item->package->price) }}</td>
                                             <td>{{ $item->nid }}</td>
                                             <td>{{ date('d-m-Y', strtotime($item->dob)) }}</td>
-                                            <td>{{ $item->district_id }}</td>
+                                            <td>{{ @$item->district }}</td>
                                             <td>
-                                                <a href="{{ route('admin.hajjis.pre_registrations.edit',$item->id) }}" class="btn btn-outline-primary waves-effect waves-light btn-package-edit" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="{{ route('admin.hajjis.pre_registrations.show',$item->id) }}" class="btn btn-outline-info waves-effect waves-light" title="View"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('admin.hajjis.pre_registrations.edit',$item->id) }}" class="btn btn-outline-primary waves-effect waves-light" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="{{ route('admin.hajjis.pre_registrations.delete',$item->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
                                                 {{-- <form method="post" action="{{ route('admin.hajjis.pre_registrations.delete',$item->id) }}">
                                                     @method('delete')

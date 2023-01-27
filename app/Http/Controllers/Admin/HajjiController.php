@@ -5,17 +5,17 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\District;
-use App\Models\PreRegistration;
+use App\Models\Hajji;
 use App\Models\Package;
 use App\Services\FileUploadService;
 
 use function GuzzleHttp\Promise\all;
 
-class PreRegistrationController extends Controller
+class HajjiController extends Controller
 {
     public function index()
     {
-        $data['preRegisterHajjis']=PreRegistration::with('package','district')->orderBy('id','desc')->get();
+        $data['preRegisterHajjis']=Hajji::with('package','district')->orderBy('id','desc')->get();
         // dd($data['preRegisterHajjis']->toArray());
         return view('admin.hajjis.pre-registrations.index',$data);
     }
@@ -29,9 +29,10 @@ class PreRegistrationController extends Controller
 
     public function store(FileUploadService $uploads, Request $request)
     {
-        $request->validate(PreRegistration::$rules);
+        $request->validate(Hajji::$rules);
 
         $req = $request->all();
+        $req['district']=District::find($request->district_id)->name;
         $req['dob'] = date('yy-m-d',strtotime($req['dob']));
         
         if ($request->hasFile('photo')) {
@@ -39,18 +40,19 @@ class PreRegistrationController extends Controller
             $req['photo'] = $fileName;
         }
 
-        PreRegistration::create($req);
+        Hajji::create($req);
         return redirect()->back()->with('success','Hajji saved successfully!');
     }
 
-    public function show(Package $package)
+    public function show($id)
     {
-        //
+        $data['hajji'] = Hajji::find($id);
+        return view('admin.hajjis.pre-registrations.show',$data);
     }
 
     public function edit($id)
     {
-        $data['hajji'] = PreRegistration::findOrFail($id);
+        $data['hajji'] = Hajji::findOrFail($id);
         
         if ($data['hajji']) {
             $data['districts'] = District::all();
@@ -63,13 +65,15 @@ class PreRegistrationController extends Controller
 
     public function update(FileUploadService $uploads, Request $request)
     {
-        $request->validate(PreRegistration::$rules);
+        // dd($request->all());
+        $request->validate(Hajji::$rules);
 
         $req = $request->all();
-        $hajji = PreRegistration::findOrFail($req['id']);
+        $hajji = Hajji::findOrFail($req['id']);
         
         if ($hajji) {
             $req['dob'] = date('yy-m-d',strtotime($req['dob']));
+            $req['district']=District::find($request->district_id)->name;
             
             if ($request->hasFile('photo')) {
                 $fileName = $uploads->upload($request->file('photo'), $uploads::HAJJI_PHOTO);
@@ -84,7 +88,7 @@ class PreRegistrationController extends Controller
 
     public function delete(FileUploadService $uploads, $id)
     {
-        $hajji = PreRegistration::findOrFail($id);
+        $hajji = Hajji::findOrFail($id);
         if ($hajji) {
             if ($hajji->photo) {
                 if( $hajji->photo ) $uploads->removeImg($hajji->photo, $uploads::HAJJI_PHOTO);

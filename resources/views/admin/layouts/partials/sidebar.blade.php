@@ -2,7 +2,7 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index.html" class="logo logo-dark text-center">
+        <a href="{{ route('admin.dashboard') }}" class="logo logo-dark text-center">
             <span class="logo-sm">
                 <img src="{{ asset('assets/admin/images/logo-sm-dark.png') }}" alt="" height="24">
                 <!-- <span class="logo-lg-text-light">Minton</span> -->
@@ -13,7 +13,7 @@
             </span>
         </a>
 
-        <a href="index.html" class="logo logo-light text-center">
+        <a href="{{ route('admin.dashboard') }}" class="logo logo-light text-center">
             <span class="logo-sm">
                 {{-- <img src="{{ asset('assets/admin/images/logo-sm.png') }}" alt="" height="24"> --}}
                 <img src="{{ asset('assets/admin/images/sa-logo-sm.png') }}" alt="" height="24">
@@ -111,10 +111,27 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <a href="#runningHajji" data-bs-toggle="collapse" aria-expanded="false" aria-controls="runningHajji" class="waves-effect">
+                        <i class="fas fa-mosque"></i>
+                        <span> Running Hajji </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="runningHajji">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('admin.hajjis.pre_registrations.create')}}"><i class=" fas fa-arrow-right"> </i> All Hajji (Running)</a>
+                            </li>
+                            {{-- <li>
+                                <a href="{{ route('admin.hajjis.pre_registrations.index')}}"><i class=" fas fa-arrow-right"> </i> Pre register hajjis</a>
+                            </li> --}}
+                        </ul>
+                    </div>
+                </li>
 
                 
 
-                <li>
+                {{-- <li>
                     <a href="#sidebarMultilevel" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarMultilevel">
                         <i class="mdi mdi-share-variant"></i>
                         <span> Multi Level </span>
@@ -167,7 +184,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
             </ul>
 
         </div>

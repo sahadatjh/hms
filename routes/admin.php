@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Http\Controllers\Admin\PreRegistrationController;
+use App\Http\Controllers\Admin\HajjiController;
+
+Route::redirect('/admin', '/admin/login');
 
 Route::group(['middleware' => ['guest:admin'],'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/login',[LoginController::class, 'create'])->name('login');
@@ -26,12 +28,23 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
 
     Route::group(['prefix'=>'hajjis', 'as'=>'hajjis.'],function(){
         Route::group(['prefix'=>'pre-registrations', 'as'=>'pre_registrations.'],function(){
-            Route::get('/',[PreRegistrationController::class,'index'])->name('index');
-            Route::get('/create',[PreRegistrationController::class,'create'])->name('create');
-            Route::post('/store',[PreRegistrationController::class,'store'])->name('store');
-            Route::get('/edit/{id}',[PreRegistrationController::class,'edit'])->name('edit');
-            Route::post('/update',[PreRegistrationController::class,'update'])->name('update');
-            Route::get('/delete/{id}',[PreRegistrationController::class,'delete'])->name('delete');
+            Route::controller(HajjiController::class)->group(function(){
+                Route::get('/','index')->name('index');
+                Route::get('/create','create')->name('create');
+                Route::post('/store','store')->name('store');
+                Route::get('/show/{id}','show')->name('show');
+                Route::get('/edit/{id}','edit')->name('edit');
+                Route::post('/update','update')->name('update');
+                Route::get('/delete/{id}','delete')->name('delete');
+            });
+
+            Route::group(['prefix'=>'running-hajji', 'as'=>'running_hajji.'],function(){
+                // Route::controller(RunningHajjiController::class)->group(function()
+                // {
+                //     Route::get('/','index');
+                // });
+            });
+            
         });
     });
 });

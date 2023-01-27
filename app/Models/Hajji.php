@@ -6,7 +6,7 @@ use Database\Factories\HajjiFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PreRegistration extends Model
+class Hajji extends Model
 {
     use HasFactory;
 
