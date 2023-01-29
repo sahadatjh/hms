@@ -59,5 +59,10 @@ class Hajji extends Model
     public function package()
     {
         return $this->belongsTo(Package::class);
-    }	
+    }
+    
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

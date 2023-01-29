@@ -42,6 +42,9 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
             });
         });
 
+        Route::post('/get-hajji-for-payment',[HajjiController::class,'getHajjiForPayment']);
+        Route::post('/get-payments-by-hajji',[PaymentController::class,'getPaymentsByHajji']);
+
         Route::group(['prefix'=>'running-hajjis', 'as'=>'running_hajjis.'],function(){
             Route::controller(HajjiController::class)->group(function(){
                 Route::get('/','runningHajjis')->name('index');
@@ -54,6 +57,7 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
         Route::controller(PaymentController::class)->group(function(){
             Route::get('/','index')->name('index');
             Route::post('/store','store')->name('store');
+            Route::get('/due-list','dueList')->name('duelist');
         });
     });
 });

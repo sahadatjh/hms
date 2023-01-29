@@ -146,12 +146,8 @@
                     </a>
                     <div class="collapse" id="payments">
                         <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('admin.payments.index') }}"><i class=" fas fa-arrow-right"> </i> Take Payments</a>
-                            </li>
-                            {{-- <li>
-                                <a href="{{ route('admin.hajjis.pre_registrations.index')}}"><i class=" fas fa-arrow-right"> </i> Pre register hajjis</a>
-                            </li> --}}
+                            <li><a href="{{ route('admin.payments.duelist') }}"><i class=" fas fa-arrow-right"> </i> Due List</a></li>
+                            <li><a href="{{ route('admin.payments.index') }}"><i class=" fas fa-arrow-right"> </i> Take Payments</a></li>
                         </ul>
                     </div>
                 </li>

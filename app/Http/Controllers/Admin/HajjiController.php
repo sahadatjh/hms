@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\District;
+use Exception;
 use App\Models\Hajji;
 use App\Models\Package;
+use App\Models\District;
+use Illuminate\Http\Request;
 use App\Services\FileUploadService;
 
+use App\Http\Controllers\Controller;
 use function GuzzleHttp\Promise\all;
 
 class HajjiController extends Controller
@@ -32,7 +33,7 @@ class HajjiController extends Controller
 
         $req = $request->all();
         $req['district']=District::find($request->district_id)->name;
-        $req['dob'] = date('yy-m-d',strtotime($req['dob']));
+        $req['dob'] = date('Y-m-d',strtotime($req['dob']));
         
         if ($request->hasFile('photo')) {
             $fileName = $uploads->upload($request->file('photo'), $uploads::HAJJI_PHOTO);
@@ -75,7 +76,7 @@ class HajjiController extends Controller
         $hajji = Hajji::findOrFail($req['id']);
         
         if ($hajji) {
-            $req['dob'] = date('yy-m-d',strtotime($req['dob']));
+            $req['dob'] = date('Y-m-d',strtotime($req['dob']));
             $req['district']=District::find($request->district_id)->name;
             
             if ($request->hasFile('photo')) {
@@ -115,6 +116,25 @@ class HajjiController extends Controller
         }
         else return redirect()->back()->withErrors('Something is wrong!');
         return redirect()->back()->withSuccess($hajji->name.', Move to running successfully!');
+    }
+
+    public function getHajjiForPayment(Request $request)
+    {
+        $req = $request->all();
+
+        $hajji = Hajji::with('payments');
+        if(!is_null($req['ng'])) {
+            $hajji =  $hajji->where('ng',$req['ng']);
+        }
+        if(!is_null($req['mobile'])) {
+            $hajji =  $hajji->where('mobile',$req['mobile']);
+        }
+        if(!is_null($req['nid'])) {
+            $hajji =  $hajji->where('nid',$req['nid']);
+        }
+        $hajji = $hajji->first();
+
+        return response()->json(['success'=>true, 'data'=>$hajji]);
     }
 
     //running hujjis

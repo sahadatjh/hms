@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','HMS | Packages')
+@section('title','HMS | Payments')
 @section('content')
     <!-- start page title -->
     <div class="row">
@@ -19,30 +19,27 @@
     
     <div class="row" id="paymentDetails">
         <div class="col-md-8">
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-body">
                     <h2 class="header-title">Hajji search for take payment</h2><hr>
                     <div class="row">
                         <div class="col-md-3">
                             <input type="text" name="ng" class="form-control" id="search_ng" placeholder="Search by NG...">
                         </div>
-                        {{-- <div class="col-md-2">
-                            <input type="text" name="name" class="form-control" placeholder="Search by name...">
-                        </div> --}}
                         <div class="col-md-3">
-                            <input type="text" name="phone" class="form-control" id="search_phone" placeholder="Search by phone...">
+                            <input type="text" name="mobile" class="form-control" id="search_mobile" placeholder="Search by mobile no...">
                         </div>
                         <div class="col-md-3">
                             <input type="text" name="nid" class="form-control" id="search_nid" placeholder="Search by NID...">
                         </div>
                         <div class="col-md-3">
-                            <button class="btn btn-success" onclick="searchHajji()" id="btnSearch">Search <i class="fas fa-search"></i></button>
+                            <button class="btn btn-success" id="btnSearch">Search <i class="fas fa-search"></i></button>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> 
+            </div>--}}
 
-            <div class="card">
+            <div class="card paymentsTableDiv">
                 <div class="card-body">
                     <h2 class="header-title">All Payments</h2><hr>
                     <div class="table-responsive">
@@ -50,66 +47,38 @@
                             <thead>
                                 <tr>
                                     <th>SL No</th>
-                                    <th>Name</th>
-                                    <th>Package</th>
-                                    <th>Price</th>
-                                    <th>Discount</th>
-                                    <th>Pay</th>
-                                    <th>Due</th>
+                                    <th>Payment Method</th>
+                                    <th>Bank Name</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>01</td>
-                                    <td>Mr Hajji</td>
-                                    <td>A</td>
-                                    <td>3,50,000/-</td>
-                                    <td>10%</td>
-                                    <td>2,20,000/-</td>
-                                    <td>1,30,000/-</td>
-                                    <td>
-                                        <button class="btn btn-outline-info waves-effect waves-light" title="Show details" data-id=""><i class="fas fa-eye"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>02</td>
-                                    <td>Mr Hajji2</td>
-                                    <td>B</td>
-                                    <td>4,50,000/-</td>
-                                    <td>30,000</td>
-                                    <td>2,20,000/-</td>
-                                    <td>1,30,000/-</td>
-                                    <td>
-                                        <button class="btn btn-outline-info waves-effect waves-light" title="Show details" data-id=""><i class="fas fa-eye"></i></button>
-                                    </td>
-                                </tr>
-                                {{-- @if (!$packages->isEmpty())
-                                    @foreach ($packages as $package)
-                                        <tr>
-                                            <td>{{ $loop->iteration	 }}</td>
-                                            <td>{{ $package->name }}</td>
-                                            <td>{{ number_format($package->price) }}</td>
-                                            <td>
-                                                <button class="btn btn-outline-primary waves-effect waves-light btn-package-edit" title="Edit" data-id="{{ $package->id }}" data-name="{{ $package->name }}" data-price="{{ $package->price }}"><i class="fas fa-pencil-alt"></i></button>
-                                                <a href="{{ route('admin.masterdata.packages.delete',$package->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif --}}
+                                
                             </tbody>
                         </table>
                     </div>
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 newPayment">
             <div class="card">
                 <div class="card-body">
                     <h2 class="header-title">New Payments</h2><hr>
 
                     <form action="{{ route('admin.payments.store') }}" method="post" class="needs-validation" id="payment-form" novalidate>
                         @csrf
+                        <div class="mb-3">
+                            <label for="hajji_id" class="form-label">Select Hjji</label>
+                            <select name="hajji_id" class="form-control" id="hajji_id" required>
+                                <option value="" selected disabled>---Please Select Hajji---</option>
+                                @foreach ($hajjis as $hajji)
+                                    <option value="{{ $hajji->id }}">{{ $hajji->name }} [ {{ $hajji->ng }} ]</option>
+                                @endforeach
+                            </select>
+                            <div class="invalid-feedback">This field is required! </div>
+                        </div>
                         <div class="mb-3">
                             <label class="col-form-label">Payment date</label>
                             <div class="input-group position-relative" id="payment_date">
@@ -218,16 +187,32 @@
             //form validation
             $('.payment-form').parsley();
 
-            $('#btnSearch').on('click', searchHajji);
+            // $('#btnSearch').on('click',function () {
+            //     const el = $(this);
+            //     const data = {};
+            //     data.ng = $('#search_ng').val().trim();
+            //     data.mobile = $('#search_mobile').val().trim();
+            //     data.nid = $('#search_nid').val().trim();
 
-            const searchHajji = () => {
-                const ng = $('#search_ng').val().trim();
-                const phone = $('#search_phone').val().trim();
-                const nid = $('#search_nid').val().trim();
-                console.log(ng);
-                console.log(phone);
-                console.log(nid);
-            }
+            //     $.ajax({
+            //         url: "/admin/hajjis/get-hajji-for-payment",
+            //         method: "post",
+            //         dataType: "json",
+            //         data: data,
+            //         headers : {
+            //             "X-CSRF-TOKEN": $('input[name="_token"]').val()
+            //         },
+            //         beforeSend: function (data) {
+            //             el.html(`Loading  <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>`).prop('disabled', true);
+            //         },
+            //         success: function (response) {
+            //             console.log(response);
+            //             el.html(`Search <i class="fas fa-search"></i>`).prop('disabled', false);
+            //             $('.paymentTableDiv').removeClass('d-none');
+            //         }
+            //     });
+              
+            // })
 
             $('#payment_method').on('change', function () {
                 const payment_method = $( this ).val();
@@ -256,6 +241,54 @@
                     }
                 }
             });
+
+            $('#hajji_id').on('change',function () { 
+                const el = $(this);
+                const id = el.val();
+                $.ajax({
+                    url: "/admin/hajjis/get-payments-by-hajji",
+                    method: "post",
+                    dataType: "json",
+                    data: {id:id},
+                    headers : {
+                        "X-CSRF-TOKEN": $('input[name="_token"]').val()
+                    },
+                    beforeSend: function (data) {
+                        el.prop('disabled', true);
+                        $('#paymentsTable tbody').html(`<tr><td colspan="6" class="text-center text-muted display-4">Loding...<div class="spinner-grow text-seconday m-2" role="status"></div></td></tr>`);
+                    },
+                    success: function (response) {
+                        addRow(response.data)
+                        el.prop('disabled', false);
+                    }
+                });
+            });
+
+            function addRow(data) { 
+                console.log(data);
+                $('#paymentsTable tbody').html(''); 
+                let html = ``;
+
+                if (data.length > 0) {
+                    data.forEach((row, indx) => {
+                        html+=`<tr>
+                                <td>${indx+1}</td>
+                                <td>${row.payment_method}</td>
+                                <td>${row.bank_name===null?'N/A':row.bank_name}</td>
+                                <td>${row.amount.toLocaleString()}/-</td>
+                                <td>${row.payment_date	}</td>
+                                <td>
+                                    <button class="btn btn-outline-info waves-effect waves-light" title="Show details" data-id="${row.id}"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>`;
+                        });
+                }else{
+                    html+=`<tr><td colspan="6" class="text-center text-muted display-4">No data found...</td></tr>`;
+                }
+
+                $('#paymentsTable tbody').html(html);
+                
+            }
 
         });
     </script>
