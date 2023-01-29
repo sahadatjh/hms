@@ -71,7 +71,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="hajji_id" class="form-label">Select Hjji</label>
-                            <select name="hajji_id" class="form-control" id="hajji_id" required>
+                            <select name="hajji_id" class="form-control" id="hajji_id" data-toggle="select2" required>
                                 <option value="" selected disabled>---Please Select Hajji---</option>
                                 @foreach ($hajjis as $hajji)
                                     <option value="{{ $hajji->id }}">{{ $hajji->name }} [ {{ $hajji->ng }} ]</option>
@@ -153,6 +153,8 @@
 @push('css')
     <link href="{{ asset('assets/admin/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/admin/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+
+    <link href="{{ asset('assets/admin/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('vendorjs')
@@ -164,10 +166,13 @@
 
     <script src="{{ asset('assets/admin/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/admin/libs/moment/min/moment.min.js') }}"></script>
+
+    <script src="{{ asset('assets/admin/libs/select2/js/select2.min.js') }}"></script>
 @endpush
 
 @push('scripts')
     <script src="{{ asset('assets/admin/js/pages/form-pickers.init.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/pages/form-advanced.init.js') }}"></script>
 
     <script>
         $(document).ready(function () {
