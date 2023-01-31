@@ -46,7 +46,8 @@ class HajjiController extends Controller
 
     public function show($id)
     {
-        $data['hajji'] = Hajji::find($id);
+        $data['hajji'] = Hajji::where('id',$id)->with('package','district')->first();
+        // dd($data['hajji']->toArray());
         return view('admin.hajjis.pre-registrations.show',$data);
     }
 
