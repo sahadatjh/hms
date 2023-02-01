@@ -13,7 +13,6 @@ class Hajji extends Model
     protected $table = 'hajjis';
 
     protected $fillable = [
-        'pre_registrations',
         'name',
         'fathers_name',
         'mothers_name',
@@ -25,17 +24,20 @@ class Hajji extends Model
         'tracking_number',
         'dob',
         'district_id',
-        'districts',
         'district',
         'gender',
         'package_id',
+        'price',
+        'discount',
+        'is_percent',
         'address',
         'remarks',
         'photo',
         'pid',
         'passport_no',
         'passport_image',
-        'pre_registrations',
+        'visa_number',
+        'visa_image',
         'status'
     ];
 
@@ -51,7 +53,7 @@ class Hajji extends Model
         'package_id'  => 'required',
     ];
 
-    public function district()
+    public function get_district()
     {
         return $this->belongsTo(District::class,'district_id','id');
     }

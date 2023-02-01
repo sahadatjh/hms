@@ -65,24 +65,6 @@
                                     <label for="tracking_number" class="form-label">Tracking number</label>
                                     <input name="tracking_number" type="text" class="form-control" id="tracking_number" value="{{ $hajji->tracking_number }}">
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="col-form-label">Date of birth</label>
-                                    <div class="input-group position-relative" id="datepicker2">
-                                        <input name="dob" type="text" class="form-control" value="{{ $hajji->dob }}" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2">
-                                        <span class="input-group-text"><i class="ri-calendar-event-fill"></i></span>
-                                    </div><!-- input-group -->
-                                    <div class="invalid-feedback">This field is required! </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="district_id" class="form-label">District</label>
-                                    <select name="district_id" id="district_id" class="form-control" required>
-                                        <option value="" disabled>Select District</option>
-                                        @foreach ($districts as $district)
-                                            <option value="{{ $district->id }}" {{ $district->id === $hajji->district_id ? 'selected' : '' }}>{{ $district->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="invalid-feedback">This field is required! </div>
-                                </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="gender" class="form-label">Gender</label>
                                     <select name="gender" id="gender" class="form-control" required>
@@ -90,6 +72,24 @@
                                         <option value="Male" {{ $hajji->gender==='Male' ? 'selected' : '' }}>Male</option>
                                         <option value="Female" {{ $hajji->gender==='Female' ? 'selected' : '' }}>Female</option>
                                         <option value="Others" {{ $hajji->gender==='Others' ? 'selected' : '' }}>Others</option>
+                                    </select>
+                                    <div class="invalid-feedback">This field is required! </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="col-form-label">Date of birth</label>
+                                    <div class="input-group position-relative" id="datepicker2">
+                                        <input name="dob" type="text" class="form-control" value="{{ $hajji->dob }}" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2">
+                                        <span class="input-group-text"><i class="ri-calendar-event-fill"></i></span>
+                                    </div><!-- input-group -->
+                                    <div class="invalid-feedback">This field is required! </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="district_id" class="form-label">District</label>
+                                    <select name="district_id" id="district_id" class="form-control" required>
+                                        <option value="" disabled>Select District</option>
+                                        @foreach ($districts as $district)
+                                            <option value="{{ $district->id }}" {{ $district->id === $hajji->district_id ? 'selected' : '' }}>{{ $district->name }}</option>
+                                        @endforeach
                                     </select>
                                     <div class="invalid-feedback">This field is required! </div>
                                 </div>
@@ -103,15 +103,32 @@
                                     </select>
                                     <div class="invalid-feedback">This field is required! </div>
                                 </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="discount" class="form-label">Discount</label>
+                                    <input name="discount" type="number" class="form-control" id="discount" value="{{ $hajji->discount }}" placeholder="Type discount">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="is_percent" class="form-label">Percent / Flat</label>
+                                    <select name="is_percent" id="is_percent" class="form-control">
+                                        <option value="">Please Select</option>
+                                        <option value="0" {{ $hajji->is_percent == 0 ? 'selected' : '' }}>Flat discount</option>
+                                        <option value="1" {{ $hajji->is_percent == 1 ? 'selected' : '' }}>Percent</option>
+                                    </select>
+                                </div>
                                 @if ($hajji->status === 2)
                                     <div class="col-md-6 mb-3">
-                                        <label for="passport_no" class="form-label">Passport number</label>
-                                        <input name="passport_no" type="text" class="form-control" id="passport_no" required value="{{ $hajji->passport_no }}">
+                                        <label for="pid" class="form-label">PID number</label>
+                                        <input name="pid" type="text" class="form-control" id="pid" required value="{{ $hajji->pid }}" placeholder="Type PID">
                                         <div class="invalid-feedback">This field is required! </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="pid" class="form-label">PID number</label>
-                                        <input name="pid" type="text" class="form-control" id="pid" required value="{{ $hajji->pid }}">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="passport_no" class="form-label">Passport number</label>
+                                        <input name="passport_no" type="text" class="form-control" id="passport_no" required value="{{ $hajji->passport_no }}" placeholder="Type passport number">
+                                        <div class="invalid-feedback">This field is required! </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="visa_number" class="form-label">Visa number</label>
+                                        <input name="visa_number" type="text" class="form-control" id="visa_number" required value="{{ $hajji->visa_number }}" placeholder="Type visa number">
                                         <div class="invalid-feedback">This field is required! </div>
                                     </div>
                                 @endif
@@ -124,7 +141,17 @@
                                     <label for="photo" class="form-label">Photo (Bellow to 200kb) </label>
                                     <input name="photo" type="file" class="dropify" data-default-file="{{ asset('/dynamic-assets/hajji-photo').'/'.$hajji->photo }}" data-height="150" data-allowed-file-extensions="jpg jpeg png svg"/>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                @if ($hajji->status == 2)
+                                    <div class="col-md-3 mb-3">
+                                        <label for="passport_image" class="form-label">Passport Image (Bellow to 200kb) </label>
+                                        <input name="passport_image" type="file" class="dropify" data-default-file="{{ asset('/dynamic-assets/passport').'/'.$hajji->passport_image }}" data-height="150" data-allowed-file-extensions="jpg jpeg png svg"/>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="visa_image" class="form-label">Visa Image (Bellow to 200kb) </label>
+                                        <input name="visa_image" type="file" class="dropify" data-default-file="{{ asset('/dynamic-assets/visa').'/'.$hajji->visa_image }}" data-height="150" data-allowed-file-extensions="jpg jpeg png svg"/>
+                                    </div>
+                                @endif
+                                <div class="{{ $hajji->status == 2 ? 'col-md-12' : 'col-md-6' }} mb-3">
                                     <label for="remarks" class="form-label">Remarks</label>
                                     <textarea name="remarks" id="remarks" class="form-control" rows="7">{{ $hajji->remarks }}</textarea>
                                 </div>

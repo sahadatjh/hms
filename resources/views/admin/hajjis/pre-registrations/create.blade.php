@@ -64,24 +64,6 @@
                                     <label for="tracking_number" class="form-label">Tracking number</label>
                                     <input name="tracking_number" type="text" class="form-control" id="tracking_number" value="{{ old('tracking_number')}}" placeholder="Type tracking number">
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="col-form-label">Date of birth</label>
-                                    <div class="input-group position-relative" id="datepicker2">
-                                        <input name="dob" type="text" class="form-control" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2" autocomplete="off">
-                                        <span class="input-group-text"><i class="ri-calendar-event-fill"></i></span>
-                                    </div><!-- input-group -->
-                                    <div class="invalid-feedback">This field is required! </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="district_id" class="form-label">District</label>
-                                    <select name="district_id" id="district_id" class="form-control" required>
-                                        <option value="" selected disabled>Select District</option>
-                                        @foreach ($districts as $district)
-                                            <option value="{{ $district->id }}">{{ $district->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="invalid-feedback">This field is required! </div>
-                                </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="gender" class="form-label">Gender</label>
                                     <select name="gender" id="gender" class="form-control" required>
@@ -93,6 +75,24 @@
                                     <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
+                                    <label for="district_id" class="form-label">District</label>
+                                    <select name="district_id" id="district_id" class="form-control" required>
+                                        <option value="" selected disabled>Select District</option>
+                                        @foreach ($districts as $district)
+                                            <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">This field is required! </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="col-form-label">Date of birth</label>
+                                    <div class="input-group position-relative" id="datepicker2">
+                                        <input name="dob" type="text" class="form-control" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2" autocomplete="off">
+                                        <span class="input-group-text"><i class="ri-calendar-event-fill"></i></span>
+                                    </div><!-- input-group -->
+                                    <div class="invalid-feedback">This field is required! </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
                                     <label for="package_id" class="form-label">Package</label>
                                     <select name="package_id" id="package_id" class="form-control" required>
                                         <option value="" selected disabled>Select package</option>
@@ -101,6 +101,18 @@
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">This field is required! </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="discount" class="form-label">Discount</label>
+                                    <input name="discount" type="number" class="form-control" id="discount" value="{{ old('discount')}}" placeholder="Type discount">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="is_percent" class="form-label">Percent / Flat</label>
+                                    <select name="is_percent" id="is_percent" class="form-control">
+                                        <option value="">Please Select</option>
+                                        <option value="0">Flat discount</option>
+                                        <option value="1">Percent</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-3 mb-3" >
                                     <label for="address" class="form-label">Address</label>

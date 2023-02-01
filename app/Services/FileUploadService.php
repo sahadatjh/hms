@@ -10,6 +10,8 @@ class FileUploadService
     public const SITE_LOGO       = 'dynamic-assets/logo/';
     public const FAVICON_SETTING = 'dynamic-assets/favicon/';
     public const HAJJI_PHOTO     = 'dynamic-assets/hajji-photo/';
+    public const PASSPORT_IMAGE  = 'dynamic-assets/passport/';
+    public const VISA_IMAGE      = 'dynamic-assets/visa/';
 
 
     public function upload($file, $filePath = '')

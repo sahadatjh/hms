@@ -16,7 +16,7 @@ class HajjiController extends Controller
 {
     public function index()
     {
-        $data['preRegisterHajjis']=Hajji::where('status',1)->with('package','district')->orderBy('id','desc')->get();
+        $data['preRegisterHajjis']=Hajji::where('status',1)->with('package','get_district')->orderBy('id','desc')->get();
         return view('admin.hajjis.pre-registrations.index',$data);
     }
 
@@ -46,7 +46,7 @@ class HajjiController extends Controller
 
     public function show($id)
     {
-        $data['hajji'] = Hajji::where('id',$id)->with('package','district')->first();
+        $data['hajji'] = Hajji::where('id',$id)->with('package','get_district')->first();
         // dd($data['hajji']->toArray());
         return view('admin.hajjis.pre-registrations.show',$data);
     }
@@ -84,6 +84,18 @@ class HajjiController extends Controller
                 $fileName = $uploads->upload($request->file('photo'), $uploads::HAJJI_PHOTO);
                 if( $hajji->photo ) $uploads->removeImg($hajji->photo, $uploads::HAJJI_PHOTO);
                 $req['photo'] = $fileName;
+            }
+            
+            if ($request->hasFile('passport_image')) {
+                $fileName = $uploads->upload($request->file('passport_image'), $uploads::PASSPORT_IMAGE);
+                if( $hajji->passport_image ) $uploads->removeImg($hajji->photo, $uploads::PASSPORT_IMAGE);
+                $req['passport_image'] = $fileName;
+            }
+            
+            if ($request->hasFile('visa_image')) {
+                $fileName = $uploads->upload($request->file('visa_image'), $uploads::VISA_IMAGE);
+                if( $hajji->visa_image ) $uploads->removeImg($hajji->visa_image, $uploads::VISA_IMAGE);
+                $req['visa_image'] = $fileName;
             }
         }
 
@@ -141,7 +153,7 @@ class HajjiController extends Controller
     //running hujjis
     public function runningHajjis()
     {
-        $data['runningHajjis']=Hajji::where('status',2)->with('package','district')->orderBy('id','desc')->get();
+        $data['runningHajjis']=Hajji::where('status',2)->with('package','get_district')->orderBy('id','desc')->get();
 
         return view('admin.hajjis.running-hajjis.index',$data);   
     }
