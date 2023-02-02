@@ -153,7 +153,7 @@
                                     <td>{{ $item->payment_method }}</td>
                                     <td>{{ $item->bank_name===null ? 'N/A' : $item->bank_name}}</td>
                                     <td>{{ number_format($item->amount,2) }}/-</td>
-                                    <td>{{ $item->payment_date->toFormattedDateString(); }}</td>
+                                    <td>{{ date('d M Y', strtotime($item->payment_date)) }}</td>
                                     <td>
                                         <button class="btn btn-outline-info waves-effect waves-light" title="Show details" data-id="${row.id}"><i class="fas fa-eye"></i></button>
                                     </td>
