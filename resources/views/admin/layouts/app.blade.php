@@ -89,26 +89,10 @@
         <!-- Vendor js -->
         <script src="{{ asset('assets/admin/js/vendor.min.js') }}"></script>
 
-        {{-- Toastr js  --}}
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
-
-
         @stack('vendorjs')
 
         <!-- App js -->
         <script src="{{ asset('assets/admin/js/app.min.js') }}"></script>
-        
-        <!---Toastr messege--->
-        {{-- @if (Session::has('success'))
-            <script>
-                (function($){
-                    $(document).ready(function () {
-                        toastr.success('{!! session("success") !!}', 'success')
-                    });
-                })(jQuery)
-            </script>
-        @endif --}}
-
 
         <!-- Tost-->
         <script src="{{ asset('assets/admin/libs/jquery-toast-plugin/jquery.toast.min.js') }}"></script>

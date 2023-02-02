@@ -34,15 +34,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (!$agents->isEmpty())
+                                @if (!is_null($agents))
                                     @foreach ($agents as $agent)
                                         <tr>
                                             <td>{{ $loop->iteration	 }}</td>
                                             <td>{{ $agent->name }}</td>
                                             <td>{{ $agent->mobile }}</td>
                                             <td>{{ $agent->getDistrict->name }}</td>
+                                            <td>{{ $agent->address }}</td>
                                             <td>
-                                                <a href="{{ route('admin.masterdata.agents.edit',$agent->id) }}" class="btn btn-outline-primary waves-effect waves-light btn-agent-edit" title="Edit" ><i class="fas fa-pencil-alt"></i></a>
+                                                <button class="btn btn-outline-primary waves-effect waves-light btn-agent-edit" id="btnAgentEdit" data-id="{{ $agent->id }}" title="Edit" ><i class="fas fa-pencil-alt"></i></button>
                                                 <a href="{{ route('admin.masterdata.agents.delete',$agent->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
@@ -101,6 +102,7 @@
 
 @push('css')
     <link href="{{ asset('assets/admin/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"/>
 @endpush
 
 @push('vendorjs')
@@ -109,19 +111,18 @@
     
     <script src="{{ asset('assets/admin/libs/parsleyjs/parsley.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/pages/form-validation.init.js') }}"></script>
-    <link href="{{ asset('assets/admin/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('assets/admin/libs/dropify/js/dropify.min.js') }}"></script>
 
 
 @endpush
 
 @push('scripts')
     <!-- Plugins js -->
-    <script src="{{ asset('assets/admin/libs/dropify/js/dropify.min.js') }}"></script>
 
     <script>
         (function () {
             $(document).ready(function () {
-                //datatable initialization
+                // datatable initialization
                 $('#agentTable').DataTable({
                     "language": {
                         "paginate": {
@@ -139,6 +140,12 @@
 
                 //dropify image
                 $('.dropify').dropify();
+
+
+                $(document).on('click', function (e) {
+                    const el = $( this );
+                    console.log(el);
+                });
             });
         })(jQuery)
 

@@ -39,7 +39,7 @@ class AgentController extends Controller
     {
         $validated = $request->validate([
             'name'        => 'required|max:255||unique:agents',
-            'mobile'      => 'required|numeric',
+            'mobile'      => 'required',
             'district_id' => 'required|numeric',
             'address'     => 'required|max:255',
         ]);
