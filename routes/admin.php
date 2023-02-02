@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AgentController;
 use App\Http\Controllers\Admin\HajjiController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PaymentController;
@@ -25,6 +26,15 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
             Route::post('/update',[PackageController::class,'update'])->name('update');
             Route::get('/delete/{id}',[PackageController::class,'delete'])->name('delete');
         });
+        
+        Route::group(['prefix'=>'agents', 'as'=>'agents.'],function(){
+            Route::get('/',[AgentController::class,'index'])->name('index');
+            Route::get('/edit/{id}',[AgentController::class,'edit'])->name('edit');
+            Route::post('/store',[AgentController::class,'store'])->name('store');
+            Route::post('/update',[AgentController::class,'update'])->name('update');
+            Route::get('/delete/{id}',[AgentController::class,'delete'])->name('delete');
+        });
+
     });
 
     Route::group(['prefix'=>'hajjis', 'as'=>'hajjis.'],function(){

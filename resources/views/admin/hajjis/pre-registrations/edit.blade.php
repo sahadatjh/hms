@@ -98,7 +98,7 @@
                                     <select name="package_id" id="package_id" class="form-control" required>
                                         <option value="" disabled>Select package</option>
                                         @foreach ($packages as $package)
-                                        <option value="{{ $package->id }}" {{ $hajji->package_id===$package->id ? 'selected' : '' }}>{{ $package->name }}</option>
+                                        <option value="{{ $package->id }}" {{ $hajji->package_id===$package->id ? 'selected' : '' }}>{{ $package->name }} [ {{ $package->price }} ]</option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">This field is required! </div>

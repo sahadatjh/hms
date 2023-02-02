@@ -87,7 +87,7 @@
                                 <div class="col-md-3 mb-3">
                                     <label class="col-form-label">Date of birth</label>
                                     <div class="input-group position-relative" id="datepicker2">
-                                        <input name="dob" type="text" class="form-control" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2" autocomplete="off">
+                                        <input name="dob" type="text" class="form-control" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2" autocomplete="off" placeholder="dd-mm-yyyy">
                                         <span class="input-group-text"><i class="ri-calendar-event-fill"></i></span>
                                     </div><!-- input-group -->
                                     <div class="invalid-feedback">This field is required! </div>
@@ -97,7 +97,7 @@
                                     <select name="package_id" id="package_id" class="form-control" required>
                                         <option value="" selected disabled>Select package</option>
                                         @foreach ($packages as $package)
-                                        <option value="{{ $package->id }}">{{ $package->name }}</option>
+                                        <option value="{{ $package->id }}">{{ $package->name }} [ {{ $package->price }} ]</option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">This field is required! </div>

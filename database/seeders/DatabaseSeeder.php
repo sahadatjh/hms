@@ -18,8 +18,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AdminSeeder::class,
+            DistrictSeeder::class,
             PackageSeeder::class,
-            DistrictSeeder::class
+            AgentSeeder::class,
         ]);
 
         Hajji::factory(50)->create();
