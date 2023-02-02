@@ -18,6 +18,7 @@ class PaymentController extends Controller
     {
         $req = $request->all();
         $req['payment_date'] = $req['payment_date'] ? date('Y-m-d H:i:s',strtotime($req['payment_date'])) : now();
+        
         Payment::create($req);
         return redirect()->back()->withSuccess('Payment received successfully!');
     }
