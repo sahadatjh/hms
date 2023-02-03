@@ -60,7 +60,7 @@
                                     <label for="ng" class="form-label">NG Number</label>
                                     <input name="ng" type="text" class="form-control" id="ng" value="{{ old('ng')}}" placeholder="Type ng number" >
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-3 mb-3">
                                     <label for="tracking_number" class="form-label">Tracking number</label>
                                     <input name="tracking_number" type="text" class="form-control" id="tracking_number" value="{{ old('tracking_number')}}" placeholder="Type tracking number">
                                 </div>
@@ -75,6 +75,14 @@
                                     <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
+                                    <label class="col-form-label">Date of birth</label>
+                                    <div class="input-group position-relative" id="datepicker2">
+                                        <input name="dob" type="text" class="form-control" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2" autocomplete="off" placeholder="dd-mm-yyyy">
+                                        <span class="input-group-text"><i class="ri-calendar-event-fill"></i></span>
+                                    </div><!-- input-group -->
+                                    <div class="invalid-feedback">This field is required! </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
                                     <label for="district_id" class="form-label">District</label>
                                     <select name="district_id" id="district_id" class="form-control select2" required>
                                         <option value="" selected disabled>Select District</option>
@@ -85,11 +93,13 @@
                                     <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
-                                    <label class="col-form-label">Date of birth</label>
-                                    <div class="input-group position-relative" id="datepicker2">
-                                        <input name="dob" type="text" class="form-control" required data-provide="datepicker" data-date-format="dd-m-yyyy" data-date-autoclose="true" data-date-container="#datepicker2" autocomplete="off" placeholder="dd-mm-yyyy">
-                                        <span class="input-group-text"><i class="ri-calendar-event-fill"></i></span>
-                                    </div><!-- input-group -->
+                                    <label for="agent_id" class="form-label">Reference</label>
+                                    <select name="agent_id" id="agent_id" class="form-control select2" required>
+                                        <option value="" selected disabled>Select Reference</option>
+                                        @foreach ($agents as $agent)
+                                            <option value="{{ $agent->id }}">{{ $agent->name }} [ {{ $agent->mobile}} ]</option>
+                                        @endforeach
+                                    </select>
                                     <div class="invalid-feedback">This field is required! </div>
                                 </div>
                                 <div class="col-md-3 mb-3">

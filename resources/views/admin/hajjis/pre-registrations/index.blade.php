@@ -41,6 +41,7 @@
                                     <th>NID No</th>
                                     <th>Data Of Birth</th>
                                     <th>District</th>
+                                    <th>Reference</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -64,6 +65,7 @@
                                             <td>{{ $item->nid }}</td>
                                             <td>{{ date('d-m-Y', strtotime($item->dob)) }}</td>
                                             <td>{{ $item->get_district->name }}</td>
+                                            <td>{{ $item->agent->name }}</td>
                                             <td>
                                                 <a href="{{ route('admin.hajjis.pre_registrations.show',$item->id) }}" class="btn btn-outline-info waves-effect waves-light" title="View"><i class="fas fa-eye"></i></a>
                                                 <a href="{{ route('admin.hajjis.pre_registrations.edit',$item->id) }}" class="btn btn-outline-primary waves-effect waves-light" title="Edit"><i class="fas fa-pencil-alt"></i></a>

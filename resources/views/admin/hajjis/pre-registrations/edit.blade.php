@@ -61,7 +61,7 @@
                                     <label for="ng" class="form-label">NG Number</label>
                                     <input name="ng" type="text" class="form-control" id="ng" value="{{ $hajji->ng }}">
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-3 mb-3">
                                     <label for="tracking_number" class="form-label">Tracking number</label>
                                     <input name="tracking_number" type="text" class="form-control" id="tracking_number" value="{{ $hajji->tracking_number }}">
                                 </div>
@@ -89,6 +89,16 @@
                                         <option value="" disabled>Select District</option>
                                         @foreach ($districts as $district)
                                             <option value="{{ $district->id }}" {{ $district->id === $hajji->district_id ? 'selected' : '' }}>{{ $district->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">This field is required! </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="agent_id" class="form-label">Reference</label>
+                                    <select name="agent_id" id="agent_id" class="form-control select2" required>
+                                        <option value="" selected disabled>Select Reference</option>
+                                        @foreach ($agents as $agent)
+                                            <option value="{{ $agent->id }}">{{ $agent->name }} [ {{ $agent->mobile}} ]</option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">This field is required! </div>

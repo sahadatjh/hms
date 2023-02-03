@@ -24,6 +24,7 @@ class Hajji extends Model
         'tracking_number',
         'dob',
         'district_id',
+        'agent_id',
         'district',
         'gender',
         'package_id',
@@ -67,4 +68,10 @@ class Hajji extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class);
+    }
+    
 }

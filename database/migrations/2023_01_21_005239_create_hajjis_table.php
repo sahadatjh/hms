@@ -27,6 +27,8 @@ return new class extends Migration
             $table->date('dob');
             $table->foreignId('district_id')->nullable();
             $table->foreign('district_id')->references('id')->on('districts');
+            $table->foreignId('agent_id')->nullable();
+            $table->foreign('agent_id')->references('id')->on('agents');
             $table->string('district')->nullable();
             $table->string('gender');
             $table->foreignId('package_id')->nullable();

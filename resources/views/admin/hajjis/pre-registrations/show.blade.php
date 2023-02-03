@@ -97,14 +97,17 @@
                             <th>{{ $hajji->remarks }}</th>
                         </tr>
                         <tr>
-                            @if ($hajji->visa_image)
+                            {{-- @if ($hajji->visa_image)
                                 <td>
                                     Passport <br>
                                     <img src="{{ asset('/dynamic-assets/passport/'.$hajji->passport_image) }}" alt="Passport " class="img-thumbnail img-fluid me-3 img-box">  
                                     Visa <br>
                                     <img src="{{ asset('/dynamic-assets/visa/'.$hajji->visa_image) }}" alt="Visa " class="img-thumbnail img-fluid img-box">  
                                 </td>
-                            @endif
+                            @endif --}}
+
+                            <th>Reference</th>
+                            <td>{{ $hajji->agent->name }} [ {{ $hajji->mobile }} ]</td>
                             <td class="fw-bold">Status</td>
                             <th>
                                 @if ( $hajji->status == 1 )

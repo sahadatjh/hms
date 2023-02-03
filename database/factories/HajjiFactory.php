@@ -32,6 +32,7 @@ class HajjiFactory extends Factory
             'dob'             => now()->toDateString(),
             'district_id'     => $distrtict_id,
             'district'        =>District::find($distrtict_id)->name,
+            'agent_id'        => random_int(1,2),
             'gender'          => 'Male',
             'address'         => fake()->address(),
             'remarks'         => fake()->sentence(1),

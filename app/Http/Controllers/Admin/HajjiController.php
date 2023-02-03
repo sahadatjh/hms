@@ -10,20 +10,23 @@ use Illuminate\Http\Request;
 use App\Services\FileUploadService;
 
 use App\Http\Controllers\Controller;
+use App\Models\Agent;
+
 use function GuzzleHttp\Promise\all;
 
 class HajjiController extends Controller
 {
     public function index()
     {
-        $data['preRegisterHajjis']=Hajji::where('status',1)->with('package','get_district')->orderBy('id','desc')->get();
+        $data['preRegisterHajjis']=Hajji::where('status',1)->with('package','get_district')->orderBy('ng','desc')->get();
         return view('admin.hajjis.pre-registrations.index',$data);
     }
 
     public function create()
     {
-        $data['packages']=Package::all();
-        $data['districts']=District::all();
+        $data['packages']  = Package::all();
+        $data['districts'] = District::all();
+        $data['agents']    = Agent::all();
         return view('admin.hajjis.pre-registrations.create',$data);
     }
 
@@ -46,7 +49,7 @@ class HajjiController extends Controller
 
     public function show($id)
     {
-        $data['hajji'] = Hajji::where('id',$id)->with('package','get_district')->first();
+        $data['hajji'] = Hajji::where('id',$id)->with('package','get_district','agent')->first();
         // dd($data['hajji']->toArray());
         return view('admin.hajjis.pre-registrations.show',$data);
     }
@@ -58,6 +61,7 @@ class HajjiController extends Controller
         if ($data['hajji']) {
             $data['districts'] = District::all();
             $data['packages']  = Package::all();
+            $data['agents']    = Agent::all();
 
             return view('admin.hajjis.pre-registrations.edit',$data);
         }
@@ -153,7 +157,7 @@ class HajjiController extends Controller
     //running hujjis
     public function runningHajjis()
     {
-        $data['runningHajjis']=Hajji::where('status',2)->with('package','get_district')->orderBy('id','desc')->get();
+        $data['runningHajjis']=Hajji::where('status',2)->with('package','get_district','agent')->orderBy('ng','desc')->get();
 
         return view('admin.hajjis.running-hajjis.index',$data);   
     }
