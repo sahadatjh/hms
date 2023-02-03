@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="district_id" class="form-label">District</label>
-                                    <select name="district_id" id="district_id" class="form-control" required>
+                                    <select name="district_id" id="district_id" class="form-control select2" required>
                                         <option value="" selected disabled>Select District</option>
                                         @foreach ($districts as $district)
                                             <option value="{{ $district->id }}">{{ $district->name }}</option>
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="package_id" class="form-label">Package</label>
-                                    <select name="package_id" id="package_id" class="form-control" required>
+                                    <select name="package_id" id="package_id" class="form-control select2" required>
                                         <option value="" selected disabled>Select package</option>
                                         @foreach ($packages as $package)
                                         <option value="{{ $package->id }}">{{ $package->name }} [ {{ $package->price }} ]</option>
@@ -142,6 +142,8 @@
     @push('css')
         <link href="{{ asset('assets/admin/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/admin/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('assets/admin/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+
     @endpush
     
     @push('vendorjs')
@@ -153,10 +155,14 @@
 
          <!-- Plugins js -->
          <script src="{{ asset('assets/admin/libs/dropify/js/dropify.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/libs/select2/js/select2.min.js') }}"></script>
+
     @endpush
     
     @push('scripts')
         <script src="{{ asset('assets/admin/js/pages/form-pickers.init.js') }}"></script>
+        {{-- <script src="{{ asset('assets/admin/js/pages/form-advanced.init.js') }}"></script> --}}
+
 
         <script>
             $(document).ready(function () {
@@ -165,6 +171,9 @@
                 
                 //dropify image
                 $('.dropify').dropify();
+
+                //select2
+                $('.select2').select2();
             });
         </script>
     @endpush

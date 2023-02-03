@@ -43,7 +43,7 @@
                                             <td>{{ $agent->getDistrict->name }}</td>
                                             <td>{{ $agent->address }}</td>
                                             <td>
-                                                <button class="btn btn-outline-primary waves-effect waves-light btn-agent-edit" id="btnAgentEdit" data-id="{{ $agent->id }}" title="Edit" ><i class="fas fa-pencil-alt"></i></button>
+                                                <button class="btn btn-outline-primary waves-effect waves-light btn-agent-edit" data-id="{{ $agent->id }}" title="Edit" ><i class="fas fa-pencil-alt"></i></button>
                                                 <a href="{{ route('admin.masterdata.agents.delete',$agent->id) }}" class="btn btn-outline-danger waves-effect waves-light" title="Delete"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
@@ -57,7 +57,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" id="addHajji">
                     <h2 class="header-title" >Add New Agent</h2><hr>
 
                     <form action="{{ route('admin.masterdata.agents.store') }}" method="post" class="needs-validation agent-form" id="agent-form" novalidate>
@@ -69,12 +69,12 @@
                         </div>
                         <div class="mb-1">
                             <label for="mobile" class="form-label">Mobile No. </label>
-                            <input name="mobile" type="text" class="form-control" id="mobile" placeholder="Type mobile number"value="{{ old('mobile') }}" required>
+                            <input name="mobile" type="number" class="form-control" id="mobile" placeholder="Type mobile number"value="{{ old('mobile') }}" required>
                             <div class="invalid-feedback">This field is required! </div>
                         </div>
                         <div class="mb-1">
                             <label for="district_id" class="form-label">District </label>
-                            <select name="district_id" id="district_id" class="form-control">
+                            <select name="district_id" id="district_id" class="form-control select2" required>
                                 <option value="" disabled selected>Select District</option>
                                 @foreach ($districts as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -87,10 +87,11 @@
                             <input name="address" type="text" class="form-control" id="address" placeholder="Type Address" value="{{ old('address') }}" required>
                             <div class="invalid-feedback">This field is required! </div>
                         </div>
-                        <div class="mb-1">
+                        {{-- <div class="mb-1">
                             <label for="photo" class="form-label">Photo </label>
                             <input name="photo" type="file" class="dropify" data-default-file="" data-height="150" data-allowed-file-extensions="jpg jpeg png svg"/>
-                        </div>
+                        </div> --}}
+                        <hr>
                         <button class="btn btn-success float-end" type="submit"><i class="fa fa-save"></i> SAVE</button>
                     </form>
                 </div>
@@ -102,7 +103,9 @@
 
 @push('css')
     <link href="{{ asset('assets/admin/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/admin/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"/>
+    {{-- <link href="{{ asset('assets/admin/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"/> --}}
+    <link href="{{ asset('assets/admin/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+
 @endpush
 
 @push('vendorjs')
@@ -111,13 +114,14 @@
     
     <script src="{{ asset('assets/admin/libs/parsleyjs/parsley.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/pages/form-validation.init.js') }}"></script>
-    <script src="{{ asset('assets/admin/libs/dropify/js/dropify.min.js') }}"></script>
-
+    {{-- <script src="{{ asset('assets/admin/libs/dropify/js/dropify.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/admin/libs/select2/js/select2.min.js') }}"></script>
 
 @endpush
 
 @push('scripts')
     <!-- Plugins js -->
+    {{-- <script src="{{ asset('assets/admin/js/pages/form-advanced.init.js') }}"></script> --}}
 
     <script>
         (function () {
@@ -139,12 +143,30 @@
                 $('.agent-form').parsley();
 
                 //dropify image
-                $('.dropify').dropify();
+                // $('.dropify').dropify();
+
+                //select2
+                $('.select2').select2();
 
 
-                $(document).on('click', function (e) {
-                    const el = $( this );
-                    console.log(el);
+                $('.btn-agent-edit').on('click',function() {
+                    const id = $( this ).attr('data-id');
+
+                    $.ajax({
+                        type: "post",
+                        url: `/admin/masterdata/agents/edit`,
+                        data: {id},
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (response) {
+                            // console.log(response);
+                            $('#addHajji').html(response);
+                            // $('.dropify').dropify();
+                            $('.select2').select2();
+                        }
+                    });
+                    
                 });
             });
         })(jQuery)

@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
         
         Route::group(['prefix'=>'agents', 'as'=>'agents.'],function(){
             Route::get('/',[AgentController::class,'index'])->name('index');
-            Route::get('/edit/{id}',[AgentController::class,'edit'])->name('edit');
+            Route::post('/edit',[AgentController::class,'edit'])->name('edit');
             Route::post('/store',[AgentController::class,'store'])->name('store');
             Route::post('/update',[AgentController::class,'update'])->name('update');
             Route::get('/delete/{id}',[AgentController::class,'delete'])->name('delete');

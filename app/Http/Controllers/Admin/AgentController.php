@@ -6,6 +6,7 @@ use App\Models\Agent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\District;
+use App\Services\FileUploadService;
 
 class AgentController extends Controller
 {
@@ -29,22 +30,27 @@ class AgentController extends Controller
         return redirect()->back()->withSuccess('Agent created successfully!');
     }
 
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $data['agent'] = Agent::find($id)->with('getDistrict')->first();
+        $id = $request->id;
+        $data['agent'] = Agent::find($id);
+        $data['districts'] = District::all();
         return view('admin.masterdata.agents.edit',$data)->render();
     }
 
-    public function update(Request $request)
+    public function update(FileUploadService $uploads, Request $request)
     {
         $validated = $request->validate([
             'name'        => 'required|max:255||unique:agents',
-            'mobile'      => 'required',
+            'mobile'      => 'required|numeric',
             'district_id' => 'required|numeric',
             'address'     => 'required|max:255',
         ]);
 
-        $agent = Agent::find($request->all());
+        $agent = Agent::find($request->id);
+        // dd($agent,$request->all());
+        $agent->update($request->all());
+
         return redirect()->back()->withSuccess('Agent updated successfully!');
     }
 

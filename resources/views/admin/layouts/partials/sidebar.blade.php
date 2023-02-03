@@ -87,9 +87,8 @@
                     </a>
                     <div class="collapse" id="masterdata">
                         <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('admin.masterdata.packages.index')}}"><i class=" fas fa-arrow-right"> </i> Packages</a>
-                            </li>
+                            <li><a href="{{ route('admin.masterdata.packages.index')}}"><i class=" fas fa-arrow-right"> </i> Packages</a></li>
+                            <li><a href="{{ route('admin.masterdata.agents.index')}}"><i class=" fas fa-arrow-right"> </i> Agents</a></li>
                         </ul>
                     </div>
                 </li>

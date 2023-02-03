@@ -71,7 +71,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="hajji_id" class="form-label">Select Hjji</label>
-                            <select name="hajji_id" class="form-control" id="hajji_id" data-toggle="select2" required>
+                            <select name="hajji_id" class="form-control select2" id="hajji_id" required>
                                 <option value="" selected disabled>---Please Select Hajji---</option>
                                 @foreach ($hajjis as $hajji)
                                     <option value="{{ $hajji->id }}">{{ $hajji->name }} [ {{ $hajji->ng }} ]</option>
@@ -172,7 +172,7 @@
 
 @push('scripts')
     <script src="{{ asset('assets/admin/js/pages/form-pickers.init.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/pages/form-advanced.init.js') }}"></script>
+    {{-- <script src="{{ asset('assets/admin/js/pages/form-advanced.init.js') }}"></script> --}}
 
     <script>
         $(document).ready(function () {
@@ -191,6 +191,9 @@
 
             //form validation
             $('.payment-form').parsley();
+            
+            //select2
+            $('.select2').select2();
 
             // $('#btnSearch').on('click',function () {
             //     const el = $(this);

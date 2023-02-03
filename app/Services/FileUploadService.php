@@ -12,6 +12,7 @@ class FileUploadService
     public const HAJJI_PHOTO     = 'dynamic-assets/hajji-photo/';
     public const PASSPORT_IMAGE  = 'dynamic-assets/passport/';
     public const VISA_IMAGE      = 'dynamic-assets/visa/';
+    public const AGENT_IMAGE     = 'dynamic-assets/agents/';
 
 
     public function upload($file, $filePath = '')
