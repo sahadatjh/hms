@@ -33,8 +33,8 @@ return new class extends Migration
             $table->string('gender');
             $table->foreignId('package_id')->nullable();
             $table->foreign('package_id')->references('id')->on('packages');
-            $table->double('discount',8,2)->nullable();
-            $table->boolean('is_percent')->nullable()->comment('0 for flate discount, 1 for percent discount');
+            $table->double('discount',8,2)->default(0);
+            $table->boolean('is_percent')->default(0)->comment('0 for flate discount, 1 for percent discount');
             $table->string('address');
             $table->text('remarks')->nullable();
             $table->string('photo')->nullable();

@@ -20,7 +20,8 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="header-title">Hajji details view</h2>
+                    <h2 class="header-title">Hajji details view <a href="{{ route('admin.hajjis.pre_registrations.edit',$hajji->id) }}" class="btn btn-info btn-sm float-end"><i class="fas fa-edit"></i> Edit</a></h2>
+
                     <hr>
                     
                     <table class="w-100 view-table">
@@ -207,19 +208,21 @@
     <!-- end page title -->
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="header-title">All Payments</h2><hr>
+                    <p class="header-title h4"><span >All Payments</span><span class="float-end ">Payable: {{ number_format($hajji->package->price) }} || Pay: {{ number_format($hajji->payments->sum('amount')) }} || Discount:  {{ number_format($hajji->discount) }} || Due: {{ number_format($hajji->package->price - ($hajji->payments->sum('amount')+$hajji->discount)) }}</span></p>
+                    <hr>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover" id="paymentsTable">
                             <thead>
                                 <tr>
                                     <th>SL No</th>
+                                    <th>Date</th>
                                     <th>Payment Method</th>
                                     <th>Bank Name</th>
+                                    <th>Check/Deposite/Transaction N0.</th>
                                     <th>Amount</th>
-                                    <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -227,12 +230,22 @@
                                 @foreach ($hajji->payments as $item)
                                 <tr>
                                     <td>{{ $loop->iteration	 }}</td>
+                                    <td>{{ date('d M Y', strtotime($item->payment_date)) }}</td>
                                     <td>{{ $item->payment_method }}</td>
                                     <td>{{ $item->bank_name===null ? 'N/A' : $item->bank_name}}</td>
+                                    <td>{{ 
+                                        $item->check_no === null
+                                        ? $item->deposite_no === null 
+                                            ? $item->transaction_no === null
+                                                ? 'N/A'
+                                                : $item->transaction_no
+                                            : $item->deposite_no
+                                        : $item->check_no 
+                                    }}</td>
                                     <td>{{ number_format($item->amount,2) }}/-</td>
-                                    <td>{{ date('d M Y', strtotime($item->payment_date)) }}</td>
                                     <td>
                                         <button class="btn btn-outline-info waves-effect waves-light" title="Show details" data-id="${row.id}"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-outline-success waves-effect waves-light" title="Print" data-id="${row.id}"><i class="fas fa-print"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach

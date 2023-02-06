@@ -69,6 +69,15 @@ class Hajji extends Model
         return $this->hasMany(Payment::class);
     }
 
+    // public function totalPayments()
+    // {
+    //     return $this->payments()
+    //         ->selectRaw('sum(amount) as total')
+    //         ->groupBy('hajji_id')
+    //         ->get()
+    //         ->total ?? 0;
+    // }
+
     public function agent()
     {
         return $this->belongsTo(Agent::class);

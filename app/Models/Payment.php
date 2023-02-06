@@ -23,4 +23,9 @@ class Payment extends Model
         'remarks',
         'created_by'
     ];
+
+    public function hajji()
+    {
+        return $this->belongsTo(Hajji::class);
+    }
 }

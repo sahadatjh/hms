@@ -42,6 +42,7 @@
                                     <th>Data Of Birth</th>
                                     <th>District</th>
                                     <th>Reference</th>
+                                    <td>Due</td>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -66,6 +67,9 @@
                                             <td>{{ date('d-m-Y', strtotime($item->dob)) }}</td>
                                             <td>{{ @$item->district }}</td>
                                             <td>{{ $item->agent->name }}</td>
+                                            <td>
+                                                <span class="badge bg-danger">{{ number_format($item->package->price - ($item->payments->sum('amount')+$item->discount)) }}</span>
+                                            </td>
                                             <td>
                                                 <a href="{{ route('admin.hajjis.pre_registrations.show',$item->id) }}" class="btn btn-outline-info waves-effect waves-light" title="View"><i class="fas fa-eye"></i></a>
                                                 <a href="{{ route('admin.hajjis.pre_registrations.edit',$item->id) }}" class="btn btn-outline-primary waves-effect waves-light" title="Edit"><i class="fas fa-pencil-alt"></i></a>

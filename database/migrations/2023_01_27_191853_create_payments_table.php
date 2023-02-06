@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('check_no')->nullable();
             $table->timestamp('issue_date')->nullable();
             $table->string('deposite_no')->nullable();
+            $table->string('transaction_no')->nullable();
             $table->double('amount',8,2);
             $table->boolean('is_online_transfer')->default(false)->comment('0 for offline , 1 for online transfer');
             $table->text('remarks')->nullable();
