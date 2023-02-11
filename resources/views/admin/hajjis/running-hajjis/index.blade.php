@@ -25,7 +25,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="packageTable">
                             <thead>
-                                <tr>
+                                <tr class="text-nowrap">
                                     <th>
                                         <div class="form-check">
                                             <input class="form-check-input checkAll checkbox-20" type="checkbox" id="checkAll">
@@ -70,7 +70,7 @@
                                             <td>
                                                 <span class="badge bg-danger">{{ number_format($item->package->price - ($item->payments->sum('amount')+$item->discount)) }}</span>
                                             </td>
-                                            <td>
+                                            <td class="text-nowrap">
                                                 <a href="{{ route('admin.hajjis.pre_registrations.show',$item->id) }}" class="btn btn-outline-info waves-effect waves-light" title="View"><i class="fas fa-eye"></i></a>
                                                 <a href="{{ route('admin.hajjis.pre_registrations.edit',$item->id) }}" class="btn btn-outline-primary waves-effect waves-light" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="{{ route('admin.hajjis.running_hajjis.back_preregister',$item->id) }}" class="btn btn-outline-purple waves-effect waves-light" title="Back to pre register."><i class="fas fa-undo"></i></a>
