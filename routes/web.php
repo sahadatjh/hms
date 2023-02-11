@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ManageController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/manage', [ManageController::class,'index'])->name('manage');
+Route::get('/cache-clear', [ManageController::class,'cacheClear'])->name('cache.clear');
+Route::get('/optimize-clear', [ManageController::class,'optimizeClear'])->name('optimize.clear');
+Route::get('/migrate', [ManageController::class,'migrate'])->name('migrate');
+Route::get('/migrate-seed', [ManageController::class,'migrateSeed'])->name('migrate.seed');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

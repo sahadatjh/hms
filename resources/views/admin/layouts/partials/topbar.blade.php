@@ -260,57 +260,59 @@
 
                 </div>
             </li>
-
-            <li class="dropdown notification-list topbar-dropdown">
-                <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{ asset('assets/admin/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
-                    <span class="pro-user-name ms-1">
-                        {{ auth('admin')->user()->name }} <i class="mdi mdi-chevron-down"></i> 
-                    </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                    <!-- item-->
-                    <div class="dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome !</h6>
-                    </div>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="ri-account-circle-line"></i>
-                        <span>My Account</span>
+            @auth('admin')
+                <li class="dropdown notification-list topbar-dropdown">
+                    <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <img src="{{ asset('assets/admin/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
+                        <span class="pro-user-name ms-1">
+                            {{ auth('admin')->user()->name }} <i class="mdi mdi-chevron-down"></i> 
+                        </span>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                        <!-- item-->
+                        <div class="dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome !</h6>
+                        </div>
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="ri-settings-3-line"></i>
-                        <span>Settings</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="ri-wallet-line"></i>
-                        <span>My Wallet <span class="badge bg-success float-end">3</span> </span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="ri-lock-line"></i>
-                        <span>Lock Screen</span>
-                    </a>
-
-                    <div class="dropdown-divider"></div>
-
-                    <!-- item-->
-                    <form method="POST" action="{{ route('admin.logout') }}">
-                        @csrf
-                        <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item notify-item">
-                            <i class="ri-logout-box-line"></i>
-                            <span>{{ __('Log Out') }}</span>
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="ri-account-circle-line"></i>
+                            <span>My Account</span>
                         </a>
-                    </form>
 
-                </div>
-            </li>
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="ri-settings-3-line"></i>
+                            <span>Settings</span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="ri-wallet-line"></i>
+                            <span>My Wallet <span class="badge bg-success float-end">3</span> </span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="ri-lock-line"></i>
+                            <span>Lock Screen</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- item-->
+                        <form method="POST" action="{{ route('admin.logout') }}">
+                            @csrf
+                            <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item notify-item">
+                                <i class="ri-logout-box-line"></i>
+                                <span>{{ __('Log Out') }}</span>
+                            </a>
+                        </form>
+
+                    </div>
+                </li>
+            @endauth
+           
 
             {{-- <li class="dropdown notification-list">
                 <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
