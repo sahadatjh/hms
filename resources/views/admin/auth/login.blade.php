@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                         @error('password')
-                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 

@@ -1,10 +1,12 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Dompdf\Dompdf;
 use App\Models\Hajji;
 use App\Models\Payment;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
@@ -34,11 +36,23 @@ class PaymentController extends Controller
         $payments = Payment::where('hajji_id',$request->id)->get();
         return response()->json(['success'=>true, 'data'=>$payments]);
     }
+
+    public function moneyReceipt($id    )
+    {
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml('admin.payments.');
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream();
+    }
+
+    public function monyReceiptPDF($payments)
+    {
+        $pdf        = PDF::setOptions([
+            'defaultFont'           => 'tahoma',
+            'isHtml5ParserEnabled'  => true,
+            'debugCss'              => true,
+        ])->loadView('admin.money-receipt-pdf');
+    }
 }
-// public function getHajjiById(Request $request)
-//     {
-//         $req = $request->all();
-//         // dd($req);
-//         $hajji = Hajji::where('id',$req['id'])->with('payments')->first();
-//         return response()->json(['success'=>true, 'data'=>$hajji]);
-//     }
+

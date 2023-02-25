@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin', 'as' => 'admin
         Route::post('/get-hajji-for-payment',[HajjiController::class,'getHajjiForPayment']);
         Route::post('/get-payments-by-hajji',[PaymentController::class,'getPaymentsByHajji']);
 
+        Route::get('money-receipt/{id}',[PaymentController::class, 'moneyReceipt'])->name('money_receipt');
+
         Route::group(['prefix'=>'running-hajjis', 'as'=>'running_hajjis.'],function(){
             Route::controller(HajjiController::class)->group(function(){
                 Route::get('/','runningHajjis')->name('index');

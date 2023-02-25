@@ -75,9 +75,9 @@
                         </tr>
                         <tr>
                             <th class="fw-bold">Package</th>
-                            <th>{{ $hajji->package->name }}</th>
+                            <th>{{ @$hajji->package->name }}</th>
                             <td class="fw-bold">Price</td>
-                            <th>{{ $hajji->package->price }}</th>
+                            <th>{{ @$hajji->package->price }}</th>
                         </tr>
                         <tr>
                             <th class="fw-bold">Discount</th>
@@ -244,7 +244,7 @@
                                     }}</td>
                                     <td>{{ number_format($item->amount,2) }}/-</td>
                                     <td>
-                                        <button class="btn btn-outline-info waves-effect waves-light" title="Show details" data-id="${row.id}"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-outline-info waves-effect waves-light" title="Show details" value="{{ $item->id }}" data-id="${row.id}"><i class="fas fa-eye"></i></button>
                                         <button class="btn btn-outline-success waves-effect waves-light" title="Print" data-id="${row.id}"><i class="fas fa-print"></i></button>
                                     </td>
                                 </tr>
