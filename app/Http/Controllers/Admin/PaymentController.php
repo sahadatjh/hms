@@ -7,6 +7,8 @@ use App\Models\Payment;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Exception;
+use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller
 {
@@ -18,11 +20,28 @@ class PaymentController extends Controller
 
     public function store(Request $request)
     {
-        $req = $request->all();
-        $req['payment_date'] = $req['payment_date'] ? date('Y-m-d H:i:s',strtotime($req['payment_date'])) : now();
-        
-        Payment::create($req);
-        return redirect()->back()->withSuccess('Payment received successfully!');
+        try {
+            $hajji = Hajji::find($request->hajji_id);
+            if ($hajji) {
+                $due = $hajji->package->price - ($hajji->discount + $hajji->payments->sum('amount'));
+
+                if ($request->amount > $due ) {
+                    throw new Exception('Amount must be less then due!');
+                }
+            }
+
+            $req = $request->all();
+            $req['payment_date'] = $req['payment_date'] ? date('Y-m-d H:i:s',strtotime($req['payment_date'])) : now();
+            
+            Payment::create($req);
+            return redirect()->back()->withSuccess('Payment received successfully!');
+        } catch (\Throwable $th) {
+            return [
+                'messege'       => $th->getMessage(),
+                'success'   => false,
+                // "line"      => $th->getLine(),
+            ];
+        }
     }
 
     public function dueList()
